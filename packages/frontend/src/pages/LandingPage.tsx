@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   ShoppingBag,
   Zap,
@@ -15,8 +14,6 @@ import {
   Bell,
   TrendingUp,
   Users,
-  MapPin,
-  Loader2,
 } from 'lucide-react';
 
 const globalStyles = `
@@ -961,79 +958,8 @@ const globalStyles = `
   }
 `;
 
-const parseMockGoogleMaps = (url: string) => {
-  let shopName = 'Quán Ăn Của Tôi';
-  let address = '123 Đường Lê Lợi, Quận 1, TP. Hồ Chí Minh';
-  let lat = '10.7769';
-  let lng = '106.7009';
-  let phone = '0909123456';
-
-  try {
-    const placeMatch = url.match(/\/place\/([^/]+)/);
-    if (placeMatch && placeMatch[1]) {
-      const decoded = decodeURIComponent(placeMatch[1].replace(/\+/g, ' '));
-      shopName = decoded.split('/')[0] || shopName;
-    }
-    const coordMatch = url.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
-    if (coordMatch) {
-      lat = coordMatch[1];
-      lng = coordMatch[2];
-    } else {
-      const qMatch = url.match(/q=(-?\d+\.\d+),(-?\d+\.\d+)/);
-      if (qMatch) {
-        lat = qMatch[1];
-        lng = qMatch[2];
-      }
-    }
-  } catch (e) {
-    console.error(e);
-  }
-
-  return { shopName, address, lat, lng, phone };
-};
-
 export const LandingPage: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [mapsUrl, setMapsUrl] = useState('');
-  const [analyzing, setAnalyzing] = useState(false);
-  const [activeStep, setActiveStep] = useState(0);
-  const navigate = useNavigate();
-
-  const handleAnalyze = () => {
-    if (!mapsUrl.trim()) {
-      toast.error('Vui lòng nhập đường dẫn Google Maps của quán!');
-      return;
-    }
-    setAnalyzing(true);
-    setActiveStep(0);
-  };
-
-  const steps = [
-    'Đang phân tích địa chỉ URL Google Maps...',
-    'Đang trích xuất thông tin cửa hàng (tên, số điện thoại)...',
-    'Đang xác định tọa độ kinh độ & vĩ độ địa lý...',
-    'Đang tạo cơ sở dữ liệu menu và website cho quán...',
-    'Hoàn tất! Đang chuyển hướng sang trang đăng ký...'
-  ];
-
-  useEffect(() => {
-    if (!analyzing) return;
-    const interval = setInterval(() => {
-      setActiveStep((prev) => {
-        if (prev >= 4) {
-          clearInterval(interval);
-          const { shopName, address, lat, lng, phone } = parseMockGoogleMaps(mapsUrl);
-          setTimeout(() => {
-            setAnalyzing(false);
-            navigate(`/register?shopName=${encodeURIComponent(shopName)}&address=${encodeURIComponent(address)}&lat=${lat}&lng=${lng}&phone=${phone}&googleMapsUrl=${encodeURIComponent(mapsUrl)}`);
-          }, 600);
-          return prev;
-        }
-        return prev + 1;
-      });
-    }, 850);
-    return () => clearInterval(interval);
-  }, [analyzing, mapsUrl, navigate]);
 
   return (
     <div className="lp-root">
@@ -1118,92 +1044,139 @@ export const LandingPage: React.FC = () => {
       </nav>
 
       {/* Hero */}
-      <section className="lp-hero bg-slate-900 text-white min-h-[75vh] flex items-center justify-center py-16 relative overflow-hidden" style={{ background: 'radial-gradient(circle at center, #787878 0%, #3e3e3e 100%)' }}>
-        <div className="absolute inset-0 bg-black/10 z-0" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl z-0" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl z-0" />
-
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10 space-y-8 animate-fade-in">
-          {/* Badge capsule */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-black/80 text-white rounded-full text-xs font-bold border border-white/10 shadow-lg select-none">
-            <MapPin size={14} className="text-primary" />
-            <span className="opacity-90">Google Maps &rarr; Website</span>
+      <section className="lp-hero">
+        <div className="lp-hero-inner">
+          {/* Left Column */}
+          <div className="lp-hero-left">
+            <div className="lp-badge">
+              <Zap size={12} />
+              QR Menu thế hệ mới
+            </div>
+            <h1 className="lp-hero-title">
+              Thực đơn quét QR<br />
+              Tối ưu <span className="g">vận</span> <span className="o">hành</span>
+            </h1>
+            <p className="lp-hero-desc">
+              Giải pháp menu điện tử QR chuyên nghiệp cho nhà hàng, quán cà phê.
+              Giúp khách hàng gọi món nhanh chóng, tiết kiệm chi phí in ấn và tối ưu hiệu suất phục vụ của nhân viên.
+            </p>
+            <div className="lp-hero-cta">
+              <Link to="/register" className="lp-btn-primary">
+                Đăng ký mở quán
+                <span className="arrow">&rarr;</span>
+              </Link>
+              <a href="#features" className="lp-btn-ghost">
+                Tìm hiểu thêm
+              </a>
+            </div>
+            <div className="lp-stats">
+              <div>
+                <div className="lp-stat-num g">15+</div>
+                <div className="lp-stat-label">PHÚT SETUP</div>
+              </div>
+              <div className="lp-stat-divider" />
+              <div>
+                <div className="lp-stat-num o">40%</div>
+                <div className="lp-stat-label">TIẾT KIỆM CA LÀM</div>
+              </div>
+              <div className="lp-stat-divider" />
+              <div>
+                <div className="lp-stat-num g">500+</div>
+                <div className="lp-stat-label">CỬA HÀNG TIN DÙNG</div>
+              </div>
+            </div>
           </div>
 
-          {/* Heading */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-tight">
-            Website cho quán<br />
-            từ Google Maps
-          </h1>
+          {/* Right Column: Mobile mockup */}
+          <div className="lp-hero-visual">
+            {/* Floating badge 1: New order notification */}
+            <div className="lp-floating-badge lp-fb-new-order">
+              <div className="lp-fb-icon" style={{ background: 'var(--primary-bg)', color: 'var(--primary)' }}>
+                <Bell size={14} />
+              </div>
+              <div>
+                <div style={{ fontWeight: 800 }}>Đơn hàng mới!</div>
+                <div style={{ fontSize: '0.65rem', color: 'var(--gray-600)' }}>Bàn 4 &bull; 3 món</div>
+              </div>
+            </div>
 
-          {/* Subtitle */}
-          <p className="text-base sm:text-lg text-slate-200/90 max-w-xl mx-auto font-medium leading-relaxed">
-            Dán link Google Maps, hệ thống tự động tạo website hoàn chỉnh.
-          </p>
+            {/* Floating badge 2: Rating */}
+            <div className="lp-floating-badge lp-fb-rating">
+              <div className="lp-fb-icon" style={{ background: '#fef3c7', color: '#d97706' }}>
+                <Star size={14} fill="#d97706" />
+              </div>
+              <div>
+                <div style={{ fontWeight: 800 }}>Đánh giá 5★</div>
+                <div style={{ fontSize: '0.65rem', color: 'var(--gray-600)' }}>Trải nghiệm tuyệt vời</div>
+              </div>
+            </div>
 
-          {/* Input Bar Card */}
-          <div className="max-w-lg mx-auto bg-white rounded-2xl p-2 shadow-2xl flex items-center border border-slate-100 group transition-all duration-300 focus-within:ring-2 focus-within:ring-primary/20">
-            <MapPin className="text-slate-400 ml-3.5 shrink-0" size={18} />
-            <input
-              type="text"
-              placeholder="Dán link Google Maps..."
-              value={mapsUrl}
-              onChange={(e) => setMapsUrl(e.target.value)}
-              className="flex-1 bg-transparent border-none outline-none text-slate-800 placeholder:text-slate-400 text-sm px-3.5 h-10 font-medium"
-            />
-            <button
-              onClick={handleAnalyze}
-              className="w-10 h-10 rounded-full bg-black hover:bg-slate-900 active:scale-95 text-white flex items-center justify-center transition-all shrink-0 shadow-md"
-              type="button"
-            >
-              <span className="text-base font-bold">&uarr;</span>
-            </button>
+            {/* Mobile Device */}
+            <div className="lp-phone">
+              <div className="lp-phone-screen">
+                <div className="lp-phone-header">
+                  <div className="lp-phone-logo">
+                    <div className="lp-phone-logo-dot">
+                      <ShoppingBag size={12} color="white" />
+                    </div>
+                    <div>
+                      <div className="lp-phone-title">LagiMenu Restaurant</div>
+                      <div className="lp-phone-subtitle">Bàn số 04</div>
+                    </div>
+                  </div>
+                  <div className="lp-phone-qr">
+                    <QrCode size={12} color="var(--primary)" />
+                    <span className="lp-phone-qr-text">Quét gọi món</span>
+                  </div>
+                </div>
+
+                <div className="lp-phone-body">
+                  <div className="lp-menu-section-label">Món nổi bật</div>
+                  <div className="lp-menu-grid">
+                    <div className="lp-menu-item">
+                      <div className="lp-menu-img">🍔</div>
+                      <div className="lp-menu-item-info">
+                        <div className="lp-menu-item-name">Burger Bò</div>
+                        <div className="lp-menu-item-price">89k</div>
+                      </div>
+                    </div>
+                    <div className="lp-menu-item">
+                      <div className="lp-menu-img">☕</div>
+                      <div className="lp-menu-item-info">
+                        <div className="lp-menu-item-name">Cà Phê Muối</div>
+                        <div className="lp-menu-item-price">39k</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="lp-menu-section-label">Giải khát</div>
+                  <div className="lp-menu-grid">
+                    <div className="lp-menu-item">
+                      <div className="lp-menu-img">🥤</div>
+                      <div className="lp-menu-item-info">
+                        <div className="lp-menu-item-name">Trà Đào Cam Sả</div>
+                        <div className="lp-menu-item-price">45k</div>
+                      </div>
+                    </div>
+                    <div className="lp-menu-item">
+                      <div className="lp-menu-img">🍕</div>
+                      <div className="lp-menu-item-info">
+                        <div className="lp-menu-item-name">Pizza Hải Sản</div>
+                        <div className="lp-menu-item-price">129k</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="lp-phone-cart">
+                    <span className="lp-cart-text">Xem giỏ hàng (2 món)</span>
+                    <span className="lp-cart-arrow" style={{ color: 'white' }}>&rarr;</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
-          {/* Free tag */}
-          <p className="text-xs text-slate-300/80 font-semibold tracking-wide select-none">
-            Miễn phí &middot; Không cần thẻ tín dụng
-          </p>
         </div>
       </section>
-
-      {/* Multi-step loading/generating Overlay */}
-      {analyzing && (
-        <div className="fixed inset-0 z-[400] flex items-center justify-center bg-black/85 backdrop-blur-md p-4">
-          <div className="w-full max-w-md bg-stone-900 border border-stone-850 rounded-3xl p-6 shadow-2xl text-center space-y-6">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto text-primary animate-pulse">
-              <Loader2 className="animate-spin text-primary" size={32} />
-            </div>
-            <div>
-              <h3 className="text-lg font-black text-white">Đang quét thông tin từ Google Maps...</h3>
-              <p className="text-xs text-stone-400 mt-1">Vui lòng chờ trong giây lát</p>
-            </div>
-            
-            <div className="space-y-3 text-left border-t border-stone-800 pt-4">
-              {steps.map((sText, idx) => (
-                <div key={idx} className="flex items-start gap-3">
-                  <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black shrink-0 ${
-                    activeStep > idx 
-                      ? 'bg-emerald-500 text-white' 
-                      : activeStep === idx 
-                        ? 'bg-primary text-white' 
-                        : 'bg-stone-800 text-stone-600'
-                  }`}>
-                    {activeStep > idx ? '✓' : idx + 1}
-                  </div>
-                  <p className={`text-xs ${
-                    activeStep === idx 
-                      ? 'text-white font-bold' 
-                      : activeStep > idx 
-                        ? 'text-stone-300' 
-                        : 'text-stone-500'
-                  }`}>{sText}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Trust bar */}
       <div className="lp-trust">
