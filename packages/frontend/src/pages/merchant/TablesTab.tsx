@@ -3,7 +3,7 @@ import {
   Clock, CheckCircle2, 
   Coffee, Loader2,  
   ChefHat, BellRing, Receipt, Search, RefreshCw, Download, Printer,
-  GitMerge, Scissors,
+  GitMerge, Scissors, Table as TableIcon, QrCode,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import api from '../../lib/api';
@@ -754,36 +754,36 @@ export const TablesTab: React.FC<{ merchantId: string; refreshKey: number; table
                 const s = table.status;
                 const statusColors = {
                   empty: {
-                    bg: 'bg-surface',
+                    bg: 'bg-white',
                     border: 'border-slate-200/80',
-                    dot: 'bg-slate-300',
-                    chair: 'bg-slate-200/50',
-                    text: 'text-slate-400'
+                    dot: 'bg-emerald-500', // Green dot for Available (Image 2)
+                    chair: 'bg-slate-200/80',
+                    text: 'text-slate-600'
                   },
                   pending: {
-                    bg: 'bg-amber-50/80',
-                    border: 'border-amber-400',
-                    dot: 'bg-amber-500 animate-pulse',
+                    bg: 'bg-white',
+                    border: 'border-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.25)]',
+                    dot: 'bg-amber-500 animate-pulse', // Yellow dot for Waiting
                     chair: 'bg-amber-300/80',
                     text: 'text-amber-800'
                   },
                   preparing: {
-                    bg: 'bg-indigo-50/80',
-                    border: 'border-indigo-400',
-                    dot: 'bg-indigo-500 animate-pulse',
-                    chair: 'bg-indigo-300/80',
-                    text: 'text-indigo-800'
+                    bg: 'bg-white',
+                    border: 'border-primary/50 shadow-[0_0_12px_rgba(234,88,12,0.25)]',
+                    dot: 'bg-primary animate-pulse', // Red/Orange dot for Occupied
+                    chair: 'bg-primary/30',
+                    text: 'text-primary'
                   },
                   ready: {
-                    bg: 'bg-emerald-50/80',
-                    border: 'border-emerald-500',
+                    bg: 'bg-white',
+                    border: 'border-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.25)]',
                     dot: 'bg-emerald-500',
                     chair: 'bg-emerald-300/80',
                     text: 'text-emerald-800'
                   },
                   busy: {
-                    bg: 'bg-surface',
-                    border: 'border-primary/30',
+                    bg: 'bg-white',
+                    border: 'border-primary shadow-[0_0_12px_rgba(234,88,12,0.3)]',
                     dot: 'bg-primary',
                     chair: 'bg-primary/30',
                     text: 'text-primary'
@@ -795,33 +795,36 @@ export const TablesTab: React.FC<{ merchantId: string; refreshKey: number; table
                     key={table.number}
                     className="relative aspect-square flex items-center justify-center group select-none transition-transform duration-200"
                   >
-                    {/* Chairs */}
-                    <div className={cn("absolute top-0 left-1/2 -translate-x-1/2 w-8 h-2.5 rounded-t-full transition-colors duration-300", colors.chair)} />
-                    <div className={cn("absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-2.5 rounded-b-full transition-colors duration-300", colors.chair)} />
-                    <div className={cn("absolute left-0 top-1/2 -translate-y-1/2 w-2.5 h-8 rounded-l-full transition-colors duration-300", colors.chair)} />
-                    <div className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-2.5 h-8 rounded-r-full transition-colors duration-300", colors.chair)} />
+                    {/* Chairs outside the table card */}
+                    {/* Top chair */}
+                    <div className={cn("absolute top-0 left-1/2 -translate-x-1/2 w-7 h-2 rounded-t-md transition-colors duration-300", colors.chair)} />
+                    {/* Bottom chair */}
+                    <div className={cn("absolute bottom-0 left-1/2 -translate-x-1/2 w-7 h-2 rounded-b-md transition-colors duration-300", colors.chair)} />
+                    {/* Left chair */}
+                    <div className={cn("absolute left-0 top-1/2 -translate-y-1/2 w-2 h-7 rounded-l-md transition-colors duration-300", colors.chair)} />
+                    {/* Right chair */}
+                    <div className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-2 h-7 rounded-r-md transition-colors duration-300", colors.chair)} />
                     
-                    {/* Round Table Container */}
+                    {/* Table Card (Square) */}
                     <div
-                      onClick={() => table.status !== 'empty' ? setSelectedTable(table) : setQrForTable(table.number)}
+                      onClick={() => setSelectedTable(table)}
                       className={cn(
-                        "w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 flex flex-col items-center justify-center relative cursor-pointer shadow-md transition-all duration-300 group-hover:scale-105 active:scale-95 overflow-hidden",
-                        colors.bg, colors.border
+                        "w-16 h-16 sm:w-20 sm:h-20 rounded-2xl border-2 flex items-center justify-center relative cursor-pointer shadow-md transition-all duration-300 group-hover:scale-105 active:scale-95 bg-white",
+                        colors.border
                       )}
                     >
-                      <span className="text-[7px] font-black uppercase tracking-widest text-slate-400">Bàn</span>
-                      <span className={cn("text-lg sm:text-2xl font-black tracking-tighter leading-none my-0.5", colors.text)}>{table.number}</span>
-                      
-                      {/* Status Dot */}
-                      <div className="flex items-center gap-1">
-                        <span className={cn("w-1.5 h-1.5 rounded-full", colors.dot)} />
-                        <span className="text-[6px] font-black uppercase tracking-wider text-slate-400">
-                          {s === 'empty' ? 'TRỐNG' : s === 'pending' ? 'MỚI' : s === 'preparing' ? 'NẤU' : s === 'ready' ? 'XONG' : 'ĐANG'}
+                      {/* Central Circle with Table Number */}
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-slate-100 flex items-center justify-center bg-slate-50/50">
+                        <span className={cn("text-base sm:text-xl font-black tracking-tight leading-none", colors.text)}>
+                          {table.number}
                         </span>
                       </div>
+                      
+                      {/* Status Dot */}
+                      <span className={cn("absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full", colors.dot)} />
 
                       {/* Hover Action Menu */}
-                      <div className="absolute inset-0 bg-slate-900/85 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 gap-1 p-1 z-20">
+                      <div className="absolute inset-0 bg-slate-900/85 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 gap-1 p-1 z-20 rounded-2xl">
                         <button
                           type="button"
                           onClick={(e) => {
@@ -832,18 +835,16 @@ export const TablesTab: React.FC<{ merchantId: string; refreshKey: number; table
                         >
                           Mã QR
                         </button>
-                        {table.status !== 'empty' && (
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedTable(table);
-                            }}
-                            className="px-2 py-0.5 rounded bg-white text-slate-800 text-[8px] font-black uppercase tracking-wide hover:bg-slate-100 active:scale-90 transition-all"
-                          >
-                            Xem Đơn
-                          </button>
-                        )}
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedTable(table);
+                          }}
+                          className="px-2 py-0.5 rounded bg-white text-slate-800 text-[8px] font-black uppercase tracking-wide hover:bg-slate-100 active:scale-90 transition-all"
+                        >
+                          Xem Đơn
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -961,7 +962,9 @@ export const TablesTab: React.FC<{ merchantId: string; refreshKey: number; table
                         <DialogTitle className="text-2xl font-black text-on-surface tracking-tight">Chi tiết bàn phục vụ</DialogTitle>
                         <div className="flex items-center gap-2 mt-1">
                           <Badge variant="outline" className="border-primary/20 text-primary font-black uppercase text-[9px]">{selectedTable.orders.length} Đơn hàng</Badge>
-                          <span className="text-xs font-bold text-slate-500">Khách ngồi được {elapsed(selectedTable.lastUpdate)}</span>
+                          {selectedTable.orders.length > 0 && (
+                            <span className="text-xs font-bold text-slate-500">Khách ngồi được {elapsed(selectedTable.lastUpdate)}</span>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -973,76 +976,99 @@ export const TablesTab: React.FC<{ merchantId: string; refreshKey: number; table
                 </div>
 
                 <div className="flex-1 overflow-y-auto p-8 space-y-8 no-scrollbar">
-                  {selectedTable.orders.map((order) => (
-                    <div key={order.id} className="relative pl-8 border-l-2 border-slate-100">
-                       <div className={cn(
-                         "absolute -left-[11px] top-0 w-5 h-5 rounded-full border-4 border-white shadow-sm ring-1 ring-slate-100",
-                         order.status === 'pending' ? "bg-amber-400" : 
-                         order.status === 'preparing' ? "bg-indigo-500" :
-                         order.status === 'ready' ? "bg-emerald-500" : "bg-primary"
-                       )} />
-
-                       <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-                          <div className="flex-1 space-y-4">
-                             <div className="flex flex-col">
-                               <div className="flex items-center gap-3">
-                                  <span className="text-sm font-black text-on-surface">Đơn #{order.id}</span>
-                                  <span className="text-[10px] font-bold text-slate-400">{new Date(order.createdAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</span>
-                               </div>
-                               {order.customerName && (
-                                 <p className="text-[10px] font-black text-primary mt-1 flex items-center gap-1.5">
-                                   👤 {order.customerName} 
-                                   {order.customerPhone && <span className="text-slate-300 font-normal">| {order.customerPhone}</span>}
-                                 </p>
-                               )}
-                             </div>
-
-                            <div className="bg-surface-container-low rounded-2xl p-4 space-y-3">
-                               {order.items.map((item, i) => (
-                                 <div key={i} className="flex justify-between items-center">
-                                    <p className="text-sm font-bold text-on-surface">
-                                       <span className="text-primary mr-2">{item.quantity}×</span>
-                                       {item.product.name}
-                                    </p>
-                                    <span className="text-xs font-black text-slate-400">{Intl.NumberFormat('vi-VN').format(parseInt(item.price || '0'))}đ</span>
-                                 </div>
-                               ))}
-                            </div>
-                         </div>
-
-                         <div className="w-full md:w-56 flex flex-col gap-2">
-                            <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Tiến độ phục vụ</p>
-                            
-                            {order.status === 'pending' && (
-                              <Button className="w-full h-10 rounded-xl bg-amber-500 hover:bg-amber-600 text-white shadow-lg shadow-amber-100" onClick={() => handleUpdateStatus(order.id, 'preparing')} disabled={updatingId === order.id}>
-                                {updatingId === order.id ? <Loader2 size={14} className="animate-spin" /> : <ChefHat size={16} className="mr-2" />}
-                                Tiếp nhận nấu
-                              </Button>
-                            )}
-
-                            {order.status === 'preparing' && (
-                              <Button className="w-full h-10 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-100" onClick={() => handleUpdateStatus(order.id, 'ready')} disabled={updatingId === order.id}>
-                                {updatingId === order.id ? <Loader2 size={14} className="animate-spin" /> : <CheckCircle2 size={16} className="mr-2" />}
-                                Báo nấu xong (Sẵn sàng)
-                              </Button>
-                            )}
-
-                            {order.status === 'ready' && (
-                              <Button className="w-full h-10 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-100 animate-pulse" onClick={() => handleUpdateStatus(order.id, 'completed')} disabled={updatingId === order.id}>
-                                {updatingId === order.id ? <Loader2 size={14} className="animate-spin" /> : <BellRing size={16} className="mr-2" />}
-                                Đã giao cho khách
-                              </Button>
-                            )}
-
-                            {order.status === 'completed' && (
-                              <div className="flex items-center gap-2 text-emerald-600 font-bold text-sm bg-emerald-50 px-4 py-2 rounded-xl border border-emerald-100">
-                                <CheckCircle2 size={16} /> Đã hoàn thành
-                              </div>
-                            )}
-                         </div>
-                       </div>
+                  {selectedTable.orders.length === 0 ? (
+                    <div className="py-16 text-center space-y-4">
+                      <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mx-auto text-slate-400">
+                        <TableIcon size={28} />
+                      </div>
+                      <div>
+                        <p className="text-base font-black text-slate-800">Bàn đang trống</p>
+                        <p className="text-xs text-slate-400 mt-1">Hiện không có bất kỳ hóa đơn hay đơn hàng nào hoạt động tại bàn này.</p>
+                      </div>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        className="rounded-2xl border-slate-200 text-slate-700 font-bold gap-1.5 mx-auto"
+                        onClick={() => {
+                          setQrForTable(selectedTable.number);
+                          setSelectedTable(null);
+                        }}
+                      >
+                        <QrCode size={16} /> Xem mã QR đặt món
+                      </Button>
                     </div>
-                  ))}
+                  ) : (
+                    selectedTable.orders.map((order) => (
+                      <div key={order.id} className="relative pl-8 border-l-2 border-slate-100">
+                         <div className={cn(
+                           "absolute -left-[11px] top-0 w-5 h-5 rounded-full border-4 border-white shadow-sm ring-1 ring-slate-100",
+                           order.status === 'pending' ? "bg-amber-400" : 
+                           order.status === 'preparing' ? "bg-indigo-500" :
+                           order.status === 'ready' ? "bg-emerald-500" : "bg-primary"
+                         )} />
+
+                         <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+                            <div className="flex-1 space-y-4">
+                               <div className="flex flex-col">
+                                 <div className="flex items-center gap-3">
+                                    <span className="text-sm font-black text-on-surface">Đơn #{order.id}</span>
+                                    <span className="text-[10px] font-bold text-slate-400">{new Date(order.createdAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</span>
+                                 </div>
+                                 {order.customerName && (
+                                   <p className="text-[10px] font-black text-primary mt-1 flex items-center gap-1.5">
+                                     👤 {order.customerName} 
+                                     {order.customerPhone && <span className="text-slate-300 font-normal">| {order.customerPhone}</span>}
+                                   </p>
+                                 )}
+                               </div>
+
+                              <div className="bg-surface-container-low rounded-2xl p-4 space-y-3">
+                                 {order.items.map((item, i) => (
+                                   <div key={i} className="flex justify-between items-center">
+                                      <p className="text-sm font-bold text-on-surface">
+                                         <span className="text-primary mr-2">{item.quantity}×</span>
+                                         {item.product.name}
+                                      </p>
+                                      <span className="text-xs font-black text-slate-400">{Intl.NumberFormat('vi-VN').format(parseInt(item.price || '0'))}đ</span>
+                                   </div>
+                                 ))}
+                              </div>
+                           </div>
+
+                           <div className="w-full md:w-56 flex flex-col gap-2">
+                              <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Tiến độ phục vụ</p>
+                              
+                              {order.status === 'pending' && (
+                                <Button className="w-full h-10 rounded-xl bg-amber-500 hover:bg-amber-600 text-white shadow-lg shadow-amber-100" onClick={() => handleUpdateStatus(order.id, 'preparing')} disabled={updatingId === order.id}>
+                                  {updatingId === order.id ? <Loader2 size={14} className="animate-spin" /> : <ChefHat size={16} className="mr-2" />}
+                                  Tiếp nhận nấu
+                                </Button>
+                              )}
+
+                              {order.status === 'preparing' && (
+                                <Button className="w-full h-10 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-100" onClick={() => handleUpdateStatus(order.id, 'ready')} disabled={updatingId === order.id}>
+                                  {updatingId === order.id ? <Loader2 size={14} className="animate-spin" /> : <CheckCircle2 size={16} className="mr-2" />}
+                                  Báo nấu xong (Sẵn sàng)
+                                </Button>
+                              )}
+
+                              {order.status === 'ready' && (
+                                <Button className="w-full h-10 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-100 animate-pulse" onClick={() => handleUpdateStatus(order.id, 'completed')} disabled={updatingId === order.id}>
+                                  {updatingId === order.id ? <Loader2 size={14} className="animate-spin" /> : <BellRing size={16} className="mr-2" />}
+                                  Đã giao cho khách
+                                </Button>
+                              )}
+
+                              {order.status === 'completed' && (
+                                <div className="flex items-center gap-2 text-emerald-600 font-bold text-sm bg-emerald-50 px-4 py-2 rounded-xl border border-emerald-100">
+                                  <CheckCircle2 size={16} /> Đã hoàn thành
+                                </div>
+                              )}
+                           </div>
+                         </div>
+                      </div>
+                    ))
+                  )}
                 </div>
 
                 <div className="p-8 bg-surface border-t border-slate-100 flex items-center justify-between gap-4">
@@ -1055,7 +1081,7 @@ export const TablesTab: React.FC<{ merchantId: string; refreshKey: number; table
                       variant="outline"
                       className="flex-1 sm:flex-initial h-12 px-6 rounded-2xl border-indigo-200 text-indigo-700 font-bold"
                       onClick={() => setMergeModal({ source: selectedTable.number, master: '01' })}
-                      disabled={processingAction}
+                      disabled={processingAction || selectedTable.orders.length === 0}
                     >
                       Ghép vào bàn khác
                     </Button>
@@ -1083,6 +1109,16 @@ export const TablesTab: React.FC<{ merchantId: string; refreshKey: number; table
                         </div>
                       );
                     })()}
+                    <Button
+                      variant="outline"
+                      className="flex-1 sm:flex-initial h-12 px-6 rounded-2xl border-slate-200 text-slate-700 font-bold gap-1.5"
+                      onClick={() => {
+                        setQrForTable(selectedTable.number);
+                        setSelectedTable(null);
+                      }}
+                    >
+                      <QrCode size={16} /> Mã QR
+                    </Button>
                     <Button variant="outline" className="flex-1 sm:flex-initial h-12 px-8 rounded-2xl border-slate-200 text-slate-500 font-bold" onClick={() => setSelectedTable(null)}>Đóng</Button>
                     <Button 
                       className="flex-1 sm:flex-initial h-12 px-8 rounded-2xl shadow-xl shadow-primary/20 font-black text-base" 
@@ -1098,29 +1134,32 @@ export const TablesTab: React.FC<{ merchantId: string; refreshKey: number; table
                           setUpdatingId(null);
                         }
                       }}
-                      disabled={updatingId !== null}
+                      disabled={updatingId !== null || selectedTable.orders.length === 0}
                     >
                       {updatingId === 99999 ? <Loader2 size={16} className="animate-spin" /> : 'Thanh toán & Dọn bàn'}
                     </Button>
                   </div>
                 </div>
-                <div className="px-8 pb-6">
-                  <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-2">Tách bill theo món</p>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedTable.orders.map((order) => (
-                      <Button
-                        key={`split-order-${order.id}`}
-                        size="sm"
-                        variant="outline"
-                        className="text-[10px] font-bold"
-                        onClick={() => setSplitModal({ order, itemIds: '', newTable: '' })}
-                        disabled={processingAction}
-                      >
-                        Tách món đơn #{order.id}
-                      </Button>
-                    ))}
+                
+                {selectedTable.orders.length > 0 && (
+                  <div className="px-8 pb-6 bg-surface">
+                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-2">Tách bill theo món</p>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedTable.orders.map((order) => (
+                        <Button
+                          key={`split-order-${order.id}`}
+                          size="sm"
+                          variant="outline"
+                          className="text-[10px] font-bold"
+                          onClick={() => setSplitModal({ order, itemIds: '', newTable: '' })}
+                          disabled={processingAction}
+                        >
+                          Tách món đơn #{order.id}
+                        </Button>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             )}
           </DialogContent>
