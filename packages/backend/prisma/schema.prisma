@@ -1,0 +1,304 @@
+// DEPRECATED — use Drizzle (src/db/schema.ts) as schema source of truth. Prisma kept for legacy tooling only.
+// Prisma schema — synced with src/db/schema.ts (Drizzle)
+// Table & column names match actual DB (snake_case). Prisma model names follow code conventions.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Enums (stored as plain text in DB — see Drizzle schema)
+// ──────────────────────────────────────────────────────────────────────────────
+
+enum order_status {
+  pending
+  confirmed
+  preparing
+  ready
+  completed
+  cancelled
+  paid
+}
+
+enum shift_status {
+  scheduled
+  active
+  completed
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// 1. merchants — Cửa hàng / tenant
+// ──────────────────────────────────────────────────────────────────────────────
+
+model merchants {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  password     String
+  name         String
+  slug         String?  @unique
+  slogan       String?
+  address      String?
+  phone        String?
+  logo_url     String?
+  open_time    String?
+  close_time   String?
+  table_count  Int      @default(10)
+  bank_name    String?
+  bank_account String?
+  bank_owner   String?
+  auto_accept  Boolean @default(true)
+  notify_sound Boolean @default(true)
+  is_open      Boolean @default(true)
+  banner_url   String?
+  qr_secret    String  @default("comviet_secret")
+  role         String  @default("merchant")
+  created_at   DateTime @default(now())
+  fcm_token    String?
+
+  categories    categories[]
+  products      products[]
+  orders        orders[]
+  reviews       reviews[]
+  employees     Employee[]
+  chat_messages ChatMessage[]
+  notifications Notification[]
+  shifts        Shift[]
+  support_requests SupportRequest[]
+  users         User[]
+  table_sessions table_sessions[]
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// 2. categories — Danh mục món ăn
+// ──────────────────────────────────────────────────────────────────────────────
+
+model categories {
+  id          Int       @id @default(autoincrement())
+  merchant_id String
+  name        String
+  sort_order  Int       @default(0)
+  created_at  DateTime  @default(now())
+
+  merchant merchants @relation(fields: [merchant_id], references: [id], onDelete: Cascade)
+  products products[]
+
+  @@index([merchant_id])
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// 3. products — Món ăn
+// ──────────────────────────────────────────────────────────────────────────────
+
+model products {
+  id           Int       @id @default(autoincrement())
+  merchant_id  String
+  category_id  Int
+  name         String
+  description  String?
+  price        String
+  image_url    String?
+  is_available Boolean   @default(true)
+  is_featured  Boolean   @default(false)
+  is_new       Boolean   @default(false)
+  options      String?
+  created_at   DateTime  @default(now())
+
+  merchant  merchants   @relation(fields: [merchant_id], references: [id], onDelete: Cascade)
+  category  categories  @relation(fields: [category_id], references: [id], onDelete: Cascade)
+  order_items order_items[]
+
+  @@index([merchant_id])
+  @@index([category_id])
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// 4. table_sessions — Phiên đặt món theo bàn
+// ──────────────────────────────────────────────────────────────────────────────
+
+model table_sessions {
+  id           String    @id @default(uuid())
+  merchant_id  String
+  table_number String
+  status       String    @default("active") // active | completed | paid
+  created_at   DateTime  @default(now())
+  completed_at DateTime?
+
+  merchant merchants @relation(fields: [merchant_id], references: [id], onDelete: Cascade)
+
+  @@index([merchant_id, table_number])
+  @@index([merchant_id, table_number, status])
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// 5. orders — Đơn hàng
+// ──────────────────────────────────────────────────────────────────────────────
+
+model orders {
+  id             Int       @id @default(autoincrement())
+  merchant_id    String
+  table_number   String
+  session_id     String?
+  customer_name  String?
+  customer_phone String?
+  status         String    @default("pending")
+  type           String    @default("order")
+  total_price    String
+  created_at     DateTime  @default(now())
+
+  merchant   merchants    @relation(fields: [merchant_id], references: [id], onDelete: Cascade)
+  order_items order_items[]
+
+  @@index([merchant_id])
+  @@index([merchant_id, table_number])
+  @@index([status])
+  @@index([created_at])
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// 6. order_items — Chi tiết món trong đơn
+// ──────────────────────────────────────────────────────────────────────────────
+
+model order_items {
+  id         Int       @id @default(autoincrement())
+  order_id   Int
+  product_id Int
+  quantity   Int       @default(1)
+  price      String
+  note       String?
+  notes      String?
+
+  order   orders   @relation(fields: [order_id], references: [id], onDelete: Cascade)
+  product products @relation(fields: [product_id], references: [id])
+
+  @@index([order_id])
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// 7. reviews — Đánh giá
+// ──────────────────────────────────────────────────────────────────────────────
+
+model reviews {
+  id            Int       @id @default(autoincrement())
+  merchant_id   String
+  customer_name String?
+  rating        Int
+  comment       String?
+  created_at    DateTime  @default(now())
+
+  merchant merchants @relation(fields: [merchant_id], references: [id], onDelete: Cascade)
+
+  @@index([merchant_id])
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// 8. Employee — Nhân viên
+// ──────────────────────────────────────────────────────────────────────────────
+
+model Employee {
+  id         String    @id @default(uuid())
+  user_id    String?
+  shop_id    String
+  name       String?
+  pin        String    // bcrypt hash — NOT plain text
+  is_active  Boolean   @default(true)
+  fcm_token  String?
+  created_at DateTime  @default(now())
+
+  merchant merchants @relation(fields: [shop_id], references: [id], onDelete: Cascade)
+  shifts   Shift[]
+
+  @@index([shop_id])
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// 9. ChatMessage
+// ──────────────────────────────────────────────────────────────────────────────
+
+model ChatMessage {
+  id           Int       @id @default(autoincrement())
+  merchant_id  String
+  sender_type  String    // 'customer' | 'staff'
+  sender_name  String
+  message      String
+  is_read      Boolean   @default(false)
+  created_at   DateTime  @default(now())
+
+  merchant merchants @relation(fields: [merchant_id], references: [id], onDelete: Cascade)
+
+  @@index([merchant_id])
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// 10. Notification
+// ──────────────────────────────────────────────────────────────────────────────
+
+model Notification {
+  id          Int       @id @default(autoincrement())
+  merchant_id String
+  title       String
+  body        String?
+  is_read     Boolean   @default(false)
+  created_at  DateTime  @default(now())
+
+  merchant merchants @relation(fields: [merchant_id], references: [id], onDelete: Cascade)
+
+  @@index([merchant_id])
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// 11. Shift
+// ──────────────────────────────────────────────────────────────────────────────
+
+model Shift {
+  id          Int       @id @default(autoincrement())
+  merchant_id String
+  employee_id String
+  start_time  DateTime
+  end_time    DateTime
+  status      String    @default("scheduled")
+  created_at  DateTime  @default(now())
+
+  merchant  merchants @relation(fields: [merchant_id], references: [id], onDelete: Cascade)
+  employee Employee  @relation(fields: [employee_id], references: [id], onDelete: Cascade)
+
+  @@index([merchant_id])
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// 12. SupportRequest
+// ──────────────────────────────────────────────────────────────────────────────
+
+model SupportRequest {
+  id          Int       @id @default(autoincrement())
+  merchant_id String
+  subject     String
+  status      String    @default("open")
+  created_at  DateTime  @default(now())
+
+  merchant merchants @relation(fields: [merchant_id], references: [id], onDelete: Cascade)
+
+  @@index([merchant_id])
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// 13. User — Người dùng (Employee account)
+// ──────────────────────────────────────────────────────────────────────────────
+
+model User {
+  id            String   @id @default(uuid())
+  merchant_id   String
+  email         String   @unique
+  password_hash String
+  name          String
+  role          String   @default("staff")
+  created_at    DateTime @default(now())
+
+  merchant merchants @relation(fields: [merchant_id], references: [id], onDelete: Cascade)
+
+  @@index([email])
+}

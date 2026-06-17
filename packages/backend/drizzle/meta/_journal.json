@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1775111595958,
+      "tag": "0000_blushing_lord_hawal",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1776000000000,
+      "tag": "0001_push_subscriptions",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1776000000001,
+      "tag": "0002_merchant_timezone",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1776000000002,
+      "tag": "0003_orders_payment_merchant_wifi_status",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1776000000003,
+      "tag": "0004_staff_invites_merchant_json",
+      "breakpoints": true
+    }
+  ]
+}

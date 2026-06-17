@@ -1,0 +1,1 @@
+CREATE INDEX "idx_shops_slug" ON "shops" USING btree ("slug");
