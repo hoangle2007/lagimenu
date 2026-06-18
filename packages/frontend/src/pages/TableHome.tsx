@@ -985,23 +985,7 @@ export const TableHome: React.FC = () => {
             <Heart size={16} />
           </div>
         </div>
-        {/* Spacer to clear bottom floating CTA button on mobile views */}
-        <div className="h-28" />
       </div>
-
-      {/* ─── CALL TO ACTION FLOATING ─── */}
-      <div className="fixed bottom-6 left-0 right-0 px-6 z-50 max-w-lg mx-auto w-full pointer-events-none [&_button]:pointer-events-auto">
-        <button
-          type="button"
-          onClick={() => navigate(`/order/${resolvedMerchantId}/${tableId}/menu`)}
-          className="w-full h-14 rounded-2xl shadow-2xl flex items-center justify-center gap-3 font-black text-sm active:scale-[0.98] transition-all text-white ring-2 ring-primary-container"
-          style={{ background: 'linear-gradient(90deg, var(--gradient-from) 0%, var(--gradient-to) 100%)' }}
-        >
-          Xem thực đơn & đặt món
-          <ChevronRight size={18} />
-        </button>
-      </div>
-
       <ReviewModal
         merchantId={resolvedMerchantId}
         tableId={tableId || ''}

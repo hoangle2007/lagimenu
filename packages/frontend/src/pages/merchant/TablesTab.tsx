@@ -749,7 +749,7 @@ export const TablesTab: React.FC<{ merchantId: string; refreshKey: number; table
               </div>
             </div>
 
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-6 bg-surface-container-low/40 p-4 rounded-3xl border border-slate-100 shadow-inner">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-6 bg-transparent p-4 rounded-3xl border-2 border-black">
               {!loading && filteredTables.map(table => {
                 const s = table.status;
                 const statusColors = {
@@ -808,10 +808,7 @@ export const TablesTab: React.FC<{ merchantId: string; refreshKey: number; table
                     {/* Table Card (Square) */}
                     <div
                       onClick={() => setSelectedTable(table)}
-                      className={cn(
-                        "w-16 h-16 sm:w-20 sm:h-20 rounded-2xl border-2 flex items-center justify-center relative cursor-pointer shadow-md transition-all duration-300 group-hover:scale-105 active:scale-95 bg-white",
-                        colors.border
-                      )}
+                      className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl border-2 border-black flex items-center justify-center relative cursor-pointer shadow-md transition-all duration-300 group-hover:scale-105 active:scale-95 bg-white"
                     >
                       {/* Central Circle with Table Number */}
                       <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-slate-100 flex items-center justify-center bg-slate-50/50">
