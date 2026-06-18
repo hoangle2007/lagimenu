@@ -1,8 +1,8 @@
 {
-  "name": "@lagimenu/backend",
+  "name": "@kivomenu/backend",
   "version": "0.1.0",
   "private": true,
-  "description": "Lagi Menu backend API — Drizzle ORM + NestJS",
+  "description": "Kivo Menu backend API — Drizzle ORM + NestJS",
   "scripts": {
     "dev": "nest start --watch",
     "start:dev": "nest start --watch",

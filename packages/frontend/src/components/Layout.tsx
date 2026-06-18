@@ -24,7 +24,7 @@ export default function Layout({ children }: LayoutProps) {
             to="/"
             className="text-xl font-bold text-primary hover:text-primary-600"
           >
-            Lagi Menu
+            Kivo Menu
           </Link>
 
           {user && (

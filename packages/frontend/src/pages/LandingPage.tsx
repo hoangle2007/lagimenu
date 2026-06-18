@@ -1001,7 +1001,7 @@ export const LandingPage: React.FC = () => {
           <div className="lp-logo-icon">
             <ShoppingBag size={18} color="white" />
           </div>
-          <span className="lp-logo-text">Lagi<span>Menu</span></span>
+          <span className="lp-logo-text">Kivo<span>Menu</span></span>
         </Link>
 
         <ul className="lp-nav-links">
@@ -1120,7 +1120,7 @@ export const LandingPage: React.FC = () => {
                       <ShoppingBag size={12} color="white" />
                     </div>
                     <div>
-                      <div className="lp-phone-title">LagiMenu Restaurant</div>
+                      <div className="lp-phone-title">KivoMenu Restaurant</div>
                       <div className="lp-phone-subtitle">Bàn số 04</div>
                     </div>
                   </div>
@@ -1200,7 +1200,7 @@ export const LandingPage: React.FC = () => {
             </div>
             <h2 className="lp-section-title">Mọi thứ bạn cần<br />để vận hành xuất sắc</h2>
             <p className="lp-section-desc">
-              Từ gọi món đến thanh toán và báo cáo, LagiMenu lo hết — để bạn tập trung phục vụ khách tốt hơn.
+              Từ gọi món đến thanh toán và báo cáo, KivoMenu lo hết — để bạn tập trung phục vụ khách tốt hơn.
             </p>
           </div>
 
@@ -1367,16 +1367,16 @@ export const LandingPage: React.FC = () => {
               <Users size={12} />
               Đánh giá
             </div>
-            <h2 className="lp-section-title">Chủ quán nói gì về Lagi Menu</h2>
+            <h2 className="lp-section-title">Chủ quán nói gì về Kivo Menu</h2>
             <p className="lp-section-desc">
-              Hàng trăm chủ nhà hàng đã tăng tốc độ phục vụ và doanh thu cùng LagiMenu.
+              Hàng trăm chủ nhà hàng đã tăng tốc độ phục vụ và doanh thu cùng KivoMenu.
             </p>
           </div>
 
           <div className="lp-testimonials-grid">
             {[
               {
-                text: '"Tốc độ phục vụ tăng rõ rệt sau khi dùng LagiMenu. Khách quét QR là đơn hiện ngay trên bếp — không cần nhân viên ghi order nữa."',
+                text: '"Tốc độ phục vụ tăng rõ rệt sau khi dùng KivoMenu. Khách quét QR là đơn hiện ngay trên bếp — không cần nhân viên ghi order nữa."',
                 name: 'Anh Minh',
                 role: 'Chủ quán Phở Hạnh',
                 color: 'var(--primary)',
@@ -1450,7 +1450,7 @@ export const LandingPage: React.FC = () => {
               <ShoppingBag size={16} color="white" />
             </div>
             <span className="lp-logo-text" style={{ color: 'rgba(255,255,255,0.85)' }}>
-              Lagi<span>Menu</span>
+              Kivo<span>Menu</span>
             </span>
           </div>
 
@@ -1461,7 +1461,7 @@ export const LandingPage: React.FC = () => {
             <li><a href="#">Liên hệ</a></li>
           </ul>
 
-          <p className="lp-footer-copy">© 2026 Lagi Menu. All rights reserved.</p>
+          <p className="lp-footer-copy">© 2026 Kivo Menu. All rights reserved.</p>
         </div>
       </footer>
     </div>

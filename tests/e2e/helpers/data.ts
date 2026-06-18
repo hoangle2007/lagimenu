@@ -131,7 +131,7 @@ export async function markAllNotificationsRead(token: string) {
 const PREFIX = `e2e_${Date.now()}_`
 
 export function uniqueEmail(role = 'test') {
-  return `${PREFIX}${role}_${Math.random().toString(36).slice(2)}@lagi.test`
+  return `${PREFIX}${role}_${Math.random().toString(36).slice(2)}@kivo.test`
 }
 
 export function uniqueName(role = 'Test') {

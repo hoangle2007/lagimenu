@@ -134,6 +134,44 @@ export default function LoginPage() {
     }
   }, [GOOGLE_CLIENT_ID])
 
+  const handleQuickLogin = async (e: React.MouseEvent) => {
+    e.preventDefault()
+    setError('')
+    setIsLoading(true)
+    try {
+      const devEmail = 'gokutest@gmail.com'
+      const devPassword = 'password'
+      setEmail(devEmail)
+      setPassword(devPassword)
+      const { data } = await login({ email: devEmail, password: devPassword })
+      setAuth(data.token, data.user)
+
+      const acc = (data.user as { accountStatus?: string }).accountStatus
+      if (data.user.role === 'merchant' && acc && acc !== 'approved') {
+        navigate('/merchant/pending', { replace: true })
+        return
+      }
+
+      if (data.user.role === 'OWNER') {
+        navigate('/merchant', { replace: true })
+      } else if (data.user.role === 'EMPLOYEE') {
+        navigate(getDefaultEmployeePath((data.user as User).notifyRole))
+      } else if (data.user.role === 'merchant') {
+        navigate('/merchant', { replace: true })
+      } else {
+        navigate('/', { replace: true })
+      }
+    } catch (err: unknown) {
+      const axiosErr = err as { response?: { data?: { error?: string } } }
+      setError(
+        axiosErr?.response?.data?.error ??
+          'Đăng nhập nhanh thất bại. Hãy chắc chắn backend và DB đang chạy.',
+      )
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
@@ -173,7 +211,7 @@ export default function LoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
       <div className="w-full max-w-sm">
         <div className="mb-6 text-center">
-          <h1 className="text-2xl font-bold text-primary">Lagi Menu</h1>
+          <h1 className="text-2xl font-bold text-primary">Kivo Menu</h1>
           <p className="mt-1 text-sm text-gray-500">Đăng nhập — Dành cho chủ quán &amp; nhân viên</p>
         </div>
 
@@ -231,6 +269,17 @@ export default function LoginPage() {
           <Button type="submit" isLoading={isLoading} className="w-full">
             Đăng nhập
           </Button>
+
+          {import.meta.env.DEV && (
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={handleQuickLogin}
+              className="w-full border-orange-200 text-orange-700 bg-orange-50 hover:bg-orange-100 hover:text-orange-800 font-bold"
+            >
+              Đăng nhập nhanh (Dev Owner)
+            </Button>
+          )}
 
           <div className="flex items-center justify-between text-sm">
             <label className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-gray-700">

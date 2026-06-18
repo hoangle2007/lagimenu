@@ -1,5 +1,5 @@
 -- ============================================================
--- Lagi Menu — Initial Schema Migration
+-- Kivo Menu — Initial Schema Migration
 -- Generated: 2026-03-30
 -- ORM: Drizzle ORM
 -- ============================================================

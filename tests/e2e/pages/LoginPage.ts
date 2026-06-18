@@ -55,7 +55,7 @@ export class LoginPage {
   }
 
   async expectTitle() {
-    await expect(this.page.locator('h1')).toContainText('Lagi Menu')
+    await expect(this.page.locator('h1')).toContainText('Kivo Menu')
   }
 
   async clickEmployeeLogin() {

@@ -87,7 +87,7 @@ export const InvoiceTemplate = React.forwardRef<HTMLDivElement, InvoiceTemplateP
       <div className="text-center space-y-1">
         <p className="font-bold">CẢM ƠN QUÝ KHÁCH!</p>
         <p className="text-[10px]">Hẹn gặp lại quý khách lần sau</p>
-        <p className="text-[8px] opacity-50">Powered by LagiMenu.vn</p>
+        <p className="text-[8px] opacity-50">Powered by KivoMenu.vn</p>
       </div>
     </div>
   );

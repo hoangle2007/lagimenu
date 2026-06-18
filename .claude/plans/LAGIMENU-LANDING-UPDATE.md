@@ -1,4 +1,4 @@
-# Plan: LandingPage Content Update — LagiMenu
+# Plan: LandingPage Content Update — KivoMenu
 
 ## Status
 - **Author**: Claude (CEO Review)
@@ -14,7 +14,7 @@
 **Stack:** React + TypeScript, inline global styles, no CSS framework
 
 ### What this plan does
-Update the LagiMenu landing page content to match the iPOS O2O product page structure:
+Update the KivoMenu landing page content to match the iPOS O2O product page structure:
 - Hero section: sharper product-specific headline, concrete stats
 - Features section: replace generic SaaS features with product-specific ones (QR ordering, KDS, smart upsell, real-time sync)
 - "How it works" section: add product-specific operational flow steps
@@ -48,9 +48,9 @@ Update the LagiMenu landing page content to match the iPOS O2O product page stru
 **Replace with realistic iPOS-equivalent numbers:**
 - 200+ nhà hàng/quán tin dùng
 - 2M+ đơn hàng/tháng
-- 15+ năm kinh nghiệm (or 3+ years for LagiMenu)
+- 15+ năm kinh nghiệm (or 3+ years for KivoMenu)
 
-*Decision needed:* Use LagiMenu's real stats or plausible projections. Recommend plausible projections since product is newer.
+*Decision needed:* Use KivoMenu's real stats or plausible projections. Recommend plausible projections since product is newer.
 
 ---
 
@@ -101,7 +101,7 @@ Replace fake brand names with realistic ones:
 ## Step 7: Footer — Company Info
 
 Add realistic footer info:
-- **Company:** LagiMenu / [Công ty]
+- **Company:** KivoMenu / [Công ty]
 - **Support:** Hỗ trợ cài đặt và hướng dẫn trực tiếp
 - **Hotline:** [Placeholder phone number]
 

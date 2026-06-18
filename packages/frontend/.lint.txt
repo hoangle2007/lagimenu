@@ -3,13 +3,13 @@
 > eslint .
 
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\components\ReviewModal.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\components\ReviewModal.tsx
   42:7  warning  Unexpected console statement  no-console
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\components\merchant\MerchantGeoMapPicker.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\components\merchant\MerchantGeoMapPicker.tsx
   140:6  warning  React Hook useEffect has a missing dependency: 'defaultCenter'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\components\ui.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\components\ui.tsx
   226:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
   227:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
   228:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
@@ -23,25 +23,25 @@ C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\s
   346:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
   347:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\hooks\useAdminAuth.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\hooks\useAdminAuth.tsx
   105:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\hooks\useAuth.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\hooks\useAuth.tsx
   136:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\hooks\useCustomerSocket.ts
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\hooks\useCustomerSocket.ts
   15:5  warning  Unexpected console statement  no-console
   26:7  warning  Unexpected console statement  no-console
   40:7  warning  Unexpected console statement  no-console
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\hooks\useMerchantNotifications.ts
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\hooks\useMerchantNotifications.ts
   19:5  warning  Unexpected console statement  no-console
   21:5  warning  Unexpected console statement  no-console
   32:5  warning  Unexpected console statement  no-console
   34:5  warning  Unexpected console statement  no-console
   62:7  warning  Unexpected console statement  no-console
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\hooks\useMerchantSocket.ts
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\hooks\useMerchantSocket.ts
   103:11  warning  Unexpected console statement  no-console
   108:5   warning  Unexpected console statement  no-console
   111:7   warning  Unexpected console statement  no-console
@@ -50,7 +50,7 @@ C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\s
   139:7   warning  Unexpected console statement  no-console
   144:7   warning  Unexpected console statement  no-console
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\lib\firebase.ts
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\lib\firebase.ts
    41:5   warning  Unexpected console statement  no-console
    48:5   warning  Unexpected console statement  no-console
    57:5   warning  Unexpected console statement  no-console
@@ -62,7 +62,7 @@ C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\s
   116:7   warning  Unexpected console statement  no-console
   119:5   warning  Unexpected console statement  no-console
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\main.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\main.tsx
    9:20  warning  Unexpected console statement  no-console
   10:19  warning  Unexpected console statement  no-console
   11:1   warning  Unexpected console statement  no-console
@@ -71,14 +71,14 @@ C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\s
   27:1   warning  Unexpected console statement  no-console
   49:5   warning  Unexpected console statement  no-console
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\pages\MerchantDashboard.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\pages\MerchantDashboard.tsx
    453:7   warning  Unexpected console statement  no-console
    790:7   warning  Unexpected console statement  no-console
    811:7   warning  Unexpected console statement  no-console
    826:11  warning  Unexpected console statement  no-console
   1358:7   warning  Unexpected console statement  no-console
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\pages\OrderMenu.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\pages\OrderMenu.tsx
   168:11  warning  Unexpected console statement                                                                                  no-console
   176:7   warning  Unexpected console statement                                                                                  no-console
   186:6   warning  React Hook useEffect has a missing dependency: 'fetchData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
@@ -86,50 +86,50 @@ C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\s
   345:7   warning  Unexpected console statement                                                                                  no-console
   374:7   warning  Unexpected console statement                                                                                  no-console
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\pages\SystemAdminDashboard.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\pages\SystemAdminDashboard.tsx
    87:7  warning  Unexpected console statement  no-console
   103:7  warning  Unexpected console statement  no-console
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\pages\TableHome.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\pages\TableHome.tsx
   113:9  warning  Unexpected console statement  no-console
   143:7  warning  Unexpected console statement  no-console
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\pages\auth\LoginPage.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\pages\auth\LoginPage.tsx
   135:6  warning  React Hook useEffect has a missing dependency: 'handleSocialSuccess'. Either include it or remove the dependency array. Outer scope values like 'GOOGLE_CLIENT_ID' aren't valid dependencies because mutating them doesn't re-render the component  react-hooks/exhaustive-deps
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\pages\auth\RegisterPage.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\pages\auth\RegisterPage.tsx
   123:6  warning  React Hook useEffect has a missing dependency: 'handleSocialSuccess'. Either include it or remove the dependency array. Outer scope values like 'GOOGLE_CLIENT_ID' aren't valid dependencies because mutating them doesn't re-render the component  react-hooks/exhaustive-deps
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\pages\employee\EmployeeDashboard.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\pages\employee\EmployeeDashboard.tsx
   172:7  warning  Unexpected console statement  no-console
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\pages\employee\EmployeeTables.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\pages\employee\EmployeeTables.tsx
   24:9  warning  Unexpected console statement  no-console
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\pages\merchant\MenuTab.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\pages\merchant\MenuTab.tsx
   149:9   warning  The 'openProdDialog' function makes the dependencies of useEffect Hook (at line 262) change on every render. To fix this, wrap the definition of 'openProdDialog' in its own useCallback() Hook  react-hooks/exhaustive-deps
   203:15  warning  Unexpected console statement                                                                                                                                                                     no-console
   250:15  warning  Unexpected console statement                                                                                                                                                                     no-console
   633:27  warning  Unexpected console statement                                                                                                                                                                     no-console
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\pages\merchant\PosTab.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\pages\merchant\PosTab.tsx
    93:7   warning  Unexpected console statement                                                                                                                            no-console
   103:6   warning  React Hook useEffect has missing dependencies: 'fetchMenu', 'fetchMerchantInfo', and 'fetchTables'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
   139:7   warning  Unexpected console statement                                                                                                                            no-console
   214:6   warning  React Hook useEffect has a missing dependency: 'getTablesWithOrders'. Either include it or remove the dependency array                                  react-hooks/exhaustive-deps
   301:11  warning  Unexpected console statement                                                                                                                            no-console
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\pages\merchant\ReportTab.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\pages\merchant\ReportTab.tsx
    87:7  warning  Unexpected console statement                                                                                                                                                                                               no-console
   133:9  warning  The 'now' object construction makes the dependencies of useMemo Hook (at line 138) change on every render. Move it inside the useMemo callback. Alternatively, wrap the initialization of 'now' in its own useMemo() Hook  react-hooks/exhaustive-deps
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\pages\merchant\SettingsTab.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\pages\merchant\SettingsTab.tsx
   489:9  warning  Unexpected console statement  no-console
   533:7  warning  Unexpected console statement  no-console
   562:7  warning  Unexpected console statement  no-console
   631:7  warning  Unexpected console statement  no-console
 
-C:\Users\Administrator\Desktop\lagi-menu-main\lagi-menu-main\packages\frontend\src\pages\merchant\TablesTab.tsx
+C:\Users\Administrator\Desktop\kivo-menu-main\kivo-menu-main\packages\frontend\src\pages\merchant\TablesTab.tsx
   115:7   warning  Unexpected console statement  no-console
   157:7   warning  Unexpected console statement  no-console
   165:7   warning  Unexpected console statement  no-console

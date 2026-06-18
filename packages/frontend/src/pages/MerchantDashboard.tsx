@@ -147,7 +147,7 @@ const OrderDetailModal: React.FC<{
   const vietQrUrl = useMemo(() => {
     if (!merchantInfo?.bankAccount || !merchantInfo?.bankName) return null;
     // Format info: OrderID - Bàn
-    const info = `GULAGI DH${order.id} BAN ${order.tableNumber}`;
+    const info = `GUKIVO DH${order.id} BAN ${order.tableNumber}`;
     return `https://img.vietqr.io/image/${merchantInfo.bankName}-${merchantInfo.bankAccount}-compact.png?amount=${order.totalPrice}&addInfo=${encodeURIComponent(info)}&accountName=${encodeURIComponent(merchantInfo.bankOwner || '')}`;
   }, [merchantInfo, order]);
 
@@ -163,7 +163,7 @@ const OrderDetailModal: React.FC<{
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-4 bg-slate-900 text-white shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-surface/10 flex items-center justify-center text-primary">
+            <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-primary">
               {paymentStep === 'details' ? <ClipboardList size={20} /> : <CreditCard size={20} />}
             </div>
             <div>
@@ -178,13 +178,13 @@ const OrderDetailModal: React.FC<{
               <button
                 type="button"
                 onClick={() => handlePrint()}
-                className="w-8 h-8 rounded-full bg-surface/10 hover:bg-surface/20 flex items-center justify-center transition-colors"
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
                 title="In hóa đơn"
               >
                 <Printer size={16} />
               </button>
             )}
-            <button onClick={onClose} className="w-8 h-8 rounded-full bg-surface/10 hover:bg-surface/20 flex items-center justify-center transition-colors">
+            <button onClick={onClose} className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
               <X size={16} />
             </button>
           </div>
@@ -693,14 +693,14 @@ const CustomersTab: React.FC<{ merchantId: string }> = ({ merchantId }) => {
           >
             {/* Header */}
             <div className="flex items-center gap-4 px-5 py-4 bg-gradient-to-r from-primary to-primary/90 text-white shrink-0">
-              <div className="w-14 h-14 rounded-full bg-surface/20 flex items-center justify-center text-white text-xl font-black">
+              <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center text-white text-xl font-black">
                 {selectedCustomer.name[0]?.toUpperCase()}
               </div>
               <div className="flex-1 min-w-0">
                 <p className="font-black text-lg leading-tight truncate">{selectedCustomer.name}</p>
                 <p className="text-xs text-white/70">Khách hàng #{selectedCustomer.id}</p>
               </div>
-              <button onClick={() => setSelectedCustomer(null)} className="w-8 h-8 rounded-full bg-surface/20 hover:bg-surface/30 flex items-center justify-center">
+              <button onClick={() => setSelectedCustomer(null)} className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center">
                 <X size={16} />
               </button>
             </div>
@@ -1038,7 +1038,7 @@ const OrdersTab: React.FC<{
               >
                 {label}
                 {(id === 'pending' || id === 'preparing' || id === 'ready') && stats[id as keyof typeof stats] > 0 && (
-                  <span className={cn("text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center", filter === id ? "bg-surface/25" : "bg-primary/10 text-primary")}>
+                  <span className={cn("text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center", filter === id ? "bg-white/25" : "bg-primary/10 text-primary")}>
                     {stats[id as keyof typeof stats]}
                   </span>
                 )}
@@ -1631,8 +1631,8 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ merchantId
                     className={cn(
                       "flex flex-col items-center gap-1 p-2 lg:p-3 rounded-lg lg:rounded-[20px] transition-all duration-300 group relative",
                       activeTab === (item.id as string) 
-                        ? "bg-surface/10 text-white shadow-lg ring-1 ring-white/20 scale-105" 
-                        : "text-slate-400 hover:text-white hover:bg-surface/5"
+                        ? "bg-white/10 text-white shadow-lg ring-1 ring-white/20 scale-105" 
+                        : "text-slate-400 hover:text-white hover:bg-white/5"
                     )}
                   >
                     <item.icon size={20} className={cn("transition-all", activeTab === (item.id as string) ? "text-primary" : "text-slate-400 group-hover:scale-110")} />
@@ -1692,7 +1692,7 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ merchantId
               </div>
               <button
                 onClick={() => { reconnectSocket(); }}
-                className="px-3 py-1 bg-surface/20 hover:bg-surface/30 rounded-lg text-xs font-black uppercase transition-all backdrop-blur-sm"
+                className="px-3 py-1 bg-white/20 hover:bg-white/30 rounded-lg text-xs font-black uppercase transition-all backdrop-blur-sm"
               >
                 Kết nối lại
               </button>
@@ -1704,7 +1704,7 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ merchantId
             <div className="container mx-auto px-4 lg:px-6 h-16 lg:h-20 flex items-center justify-between gap-8">
               <div className="flex items-center gap-3 flex-shrink-0">
                 <div>
-                  <p className="font-black text-primary text-base lg:text-lg leading-none tracking-tight">LagiMenu</p>
+                  <p className="font-black text-primary text-base lg:text-lg leading-none tracking-tight">KivoMenu</p>
                   <div className="flex items-center gap-1.5 mt-1">
                     <Badge variant="outline" className="text-[8px] h-4 px-1.5 font-black uppercase text-slate-400 border-slate-200">{merchantDetails?.name || (merchantName === 'Demo Merchant' ? 'Cửa hàng Demo' : merchantName)}</Badge>
                   </div>
@@ -2073,7 +2073,7 @@ export const MerchantDashboard: React.FC<MerchantDashboardProps> = ({ merchantId
                     <Bell size={18} className="animate-bounce" />
                     <span className="text-xs font-black uppercase tracking-widest">Đơn hàng mới!</span>
                   </div>
-                  <button onClick={() => { clearOrderNotify(); setNewOrderNotify(null); }} className="w-7 h-7 flex items-center justify-center rounded-full bg-surface/20 text-white hover:bg-surface/40">
+                  <button onClick={() => { clearOrderNotify(); setNewOrderNotify(null); }} className="w-7 h-7 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/40">
                     <X size={16} />
                   </button>
                 </div>

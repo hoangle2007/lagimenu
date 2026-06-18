@@ -9,7 +9,7 @@ const sql = postgres(process.env.DATABASE_URL!);
 
 async function seed() {
   console.log('Seeding super admin...');
-  const email = 'superadmin@lagimenu.com';
+  const email = 'superadmin@kivomenu.com';
   const password = 'Admin123!';
   const hashedPassword = await bcrypt.hash(password, 10);
 

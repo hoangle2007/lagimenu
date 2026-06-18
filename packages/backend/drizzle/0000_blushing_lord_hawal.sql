@@ -25,7 +25,7 @@ CREATE TABLE "merchants" (
 	"notify_sound" boolean DEFAULT true NOT NULL,
 	"is_open" boolean DEFAULT true NOT NULL,
 	"banner_url" text,
-	"qr_secret" text DEFAULT 'gulagi_secret' NOT NULL,
+	"qr_secret" text DEFAULT 'gukivo_secret' NOT NULL,
 	"role" text DEFAULT 'merchant' NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	CONSTRAINT "merchants_email_unique" UNIQUE("email")

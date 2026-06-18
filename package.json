@@ -1,7 +1,7 @@
 {
-  "name": "lagi-menu-monolist",
+  "name": "kivo-menu-monolist",
   "version": "1.0.0",
-  "description": "Lagi Menu - QR Ordering System",
+  "description": "Kivo Menu - QR Ordering System",
   "private": true,
   "workspaces": [
     "packages/*"

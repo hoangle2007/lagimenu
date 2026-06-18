@@ -1,6 +1,6 @@
 {
-  "name": "Lagi Menu",
-  "short_name": "Lagi Menu",
+  "name": "Kivo Menu",
+  "short_name": "Kivo Menu",
   "description": "Smart QR Menu for Restaurants",
   "start_url": "/",
   "display": "standalone",

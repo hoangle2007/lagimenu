@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Heart, Minus, Plus, ChevronLeft, Check, X } from 'lucide-react';
 import { Button } from './ui';
+import { useParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 interface Product {
   id: number;
@@ -36,6 +38,42 @@ interface ProductDetailProps {
 }
 
 export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose, onAddToCart, sessionId }) => {
+  const { merchantId, shopId } = useParams<{ merchantId?: string; shopId?: string }>();
+  const resolvedMerchantId = merchantId ?? shopId ?? 'global';
+  const favoritesKey = `kivo_favorites_${resolvedMerchantId}`;
+
+  const [isFavorited, setIsFavorited] = useState(false);
+
+  useEffect(() => {
+    try {
+      const favsStr = localStorage.getItem(favoritesKey);
+      const favs: number[] = favsStr ? JSON.parse(favsStr) : [];
+      setIsFavorited(favs.includes(product.id));
+    } catch {
+      setIsFavorited(false);
+    }
+  }, [favoritesKey, product.id]);
+
+  const toggleFavorite = () => {
+    try {
+      const favsStr = localStorage.getItem(favoritesKey);
+      let favs: number[] = favsStr ? JSON.parse(favsStr) : [];
+      if (favs.includes(product.id)) {
+        favs = favs.filter(id => id !== product.id);
+        setIsFavorited(false);
+        toast.success('Đã xóa khỏi danh sách yêu thích!');
+      } else {
+        favs.push(product.id);
+        setIsFavorited(true);
+        toast.success('Đã lưu vào danh sách yêu thích!');
+      }
+      localStorage.setItem(favoritesKey, JSON.stringify(favs));
+      window.dispatchEvent(new Event('kivo_favorites_changed'));
+    } catch {
+      toast.error('Không thể lưu món yêu thích.');
+    }
+  };
+
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState('M');
   const [selectedSugar, setSelectedSugar] = useState('50%');
@@ -98,8 +136,12 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose, 
           >
             <ChevronLeft size={20} />
           </button>
-          <button className="pointer-events-auto w-10 h-10 flex items-center justify-center rounded-full bg-surface/90 shadow-md text-stone-800 active:scale-95 transition-all">
-            <Heart size={20} />
+          <button 
+            onClick={toggleFavorite}
+            className="pointer-events-auto w-10 h-10 flex items-center justify-center rounded-full bg-surface/90 shadow-md active:scale-95 transition-all"
+            title={isFavorited ? 'Xóa khỏi yêu thích' : 'Lưu món yêu thích'}
+          >
+            <Heart size={20} className={isFavorited ? 'fill-red-500 text-red-500' : 'text-stone-800'} />
           </button>
         </div>
 
@@ -154,7 +196,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose, 
               )}
             
               <p className="text-stone-500 text-sm leading-snug mb-8">
-                {product.description || 'Hương vị thơm ngon hấp dẫn từ Lagi Menu, mang đến cho bạn trải nghiệm tuyệt vời nhất.'}
+                {product.description || 'Hương vị thơm ngon hấp dẫn từ Kivo Menu, mang đến cho bạn trải nghiệm tuyệt vời nhất.'}
               </p>
 
               {/* Customization */}

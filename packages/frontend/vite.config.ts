@@ -29,16 +29,16 @@ export default defineConfig({
     allowedHosts: ['smoky-majestic-pope.ngrok-free.dev', 'kivoviet.com'],
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:3001',
+        target: 'http://127.0.0.1:5000',
         changeOrigin: true,
         // NestJS uses setGlobalPrefix('api') — pass through as-is
       },
       '/uploads': {
-        target: 'http://127.0.0.1:3001',
+        target: 'http://127.0.0.1:5000',
         changeOrigin: true,
       },
       '/socket.io': {
-        target: 'http://127.0.0.1:3001',
+        target: 'http://127.0.0.1:5000',
         ws: true,
         changeOrigin: true,
         configure: (proxy) => {

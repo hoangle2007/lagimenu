@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.lagimenu" "\0"
-            VALUE "FileDescription", "lagimenu_admin" "\0"
+            VALUE "CompanyName", "com.kivomenu" "\0"
+            VALUE "FileDescription", "kivomenu_admin" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "lagimenu_admin" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2026 com.lagimenu. All rights reserved." "\0"
-            VALUE "OriginalFilename", "lagimenu_admin.exe" "\0"
-            VALUE "ProductName", "lagimenu_admin" "\0"
+            VALUE "InternalName", "kivomenu_admin" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 com.kivomenu. All rights reserved." "\0"
+            VALUE "OriginalFilename", "kivomenu_admin.exe" "\0"
+            VALUE "ProductName", "kivomenu_admin" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

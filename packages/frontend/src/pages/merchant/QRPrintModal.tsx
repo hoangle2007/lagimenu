@@ -55,8 +55,8 @@ export const QRPrintModal: React.FC<QRPrintModalProps> = ({
               >
                 {/* Decorative Head */}
                 <div className="h-24 bg-primary flex items-center justify-center relative overflow-hidden">
-                   <div className="absolute top-0 right-0 w-32 h-32 bg-surface/10 rounded-full blur-3xl -mr-16 -mt-16" />
-                   <div className="absolute bottom-0 left-0 w-24 h-24 bg-surface/5 rounded-full blur-2xl -ml-12 -mb-12" />
+                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl -mr-16 -mt-16" />
+                   <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full blur-2xl -ml-12 -mb-12" />
                    
                    <div className="flex flex-col items-center">
                       <p className="text-[10px] font-black text-white/60 uppercase tracking-[0.2em] mb-1">STT BÀN</p>
@@ -112,7 +112,7 @@ export const QRPrintModal: React.FC<QRPrintModalProps> = ({
                    
                    <div className="mt-4 flex items-center gap-3">
                       <div className="w-1.5 h-1.5 rounded-full bg-slate-200" />
-                      <p className="text-[8px] font-black text-slate-300 uppercase tracking-[0.3em]">Lagi Menu Service</p>
+                      <p className="text-[8px] font-black text-slate-300 uppercase tracking-[0.3em]">Kivo Menu Service</p>
                       <div className="w-1.5 h-1.5 rounded-full bg-slate-200" />
                    </div>
                 </div>

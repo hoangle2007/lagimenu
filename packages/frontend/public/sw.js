@@ -1,6 +1,6 @@
  
 self.addEventListener('push', (event) => {
-  let title = 'Lagi Menu';
+  let title = 'Kivo Menu';
   let body = '';
   try {
     const data = event.data ? event.data.json() : {};

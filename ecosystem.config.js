@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'lagi-menu-backend',
+      name: 'kivo-menu-backend',
       cwd: './packages/backend',
       script: 'dist/main.js',
       instances: 1,
@@ -13,7 +13,7 @@ module.exports = {
       },
     },
     {
-      name: 'lagi-menu-frontend',
+      name: 'kivo-menu-frontend',
       script: 'npx',
       args: 'serve -s dist -l 4100',
       cwd: './packages/frontend',

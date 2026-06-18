@@ -82,7 +82,7 @@ logs/security/
 
 # Firebase service account
 *-firebase-adminsdk-*.json
-lagi-menu01-firebase-adminsdk-*.json
+kivo-menu01-firebase-adminsdk-*.json
 
 # Local dev uploads (UPLOAD_LOCAL_DIR)
 packages/backend/uploads-local/

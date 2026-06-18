@@ -7,7 +7,7 @@ Hướng dẫn cài đặt Firebase Cloud Messaging (FCM) để merchant nhận 
 ## Bước 1: Tạo Firebase Project
 
 1. Vào [Firebase Console](https://console.firebase.google.com) → **Create project**
-2. Đặt tên project (VD: `lagi-menu`)
+2. Đặt tên project (VD: `kivo-menu`)
 3. Tắt Google Analytics (không cần) → **Create project**
 
 ---
@@ -15,15 +15,15 @@ Hướng dẫn cài đặt Firebase Cloud Messaging (FCM) để merchant nhận 
 ## Bước 2: Thêm Web App
 
 1. Trong Firebase Console → **Project Settings** → **Add app** → chọn **Web** (`</>`)
-2. Đặt tên app (VD: `LagiMenu Web`)
+2. Đặt tên app (VD: `KivoMenu Web`)
 3. Copy đoạn config:
 
 ```json
 {
   "apiKey": "AIzaSy...",
-  "authDomain": "lagi-menu.firebaseapp.com",
-  "projectId": "lagi-menu",
-  "storageBucket": "lagi-menu.appspot.com",
+  "authDomain": "kivo-menu.firebaseapp.com",
+  "projectId": "kivo-menu",
+  "storageBucket": "kivo-menu.appspot.com",
   "messagingSenderId": "123456789",
   "appId": "1:123456789:web:abc..."
 }
@@ -56,15 +56,15 @@ Hướng dẫn cài đặt Firebase Cloud Messaging (FCM) để merchant nhận 
 File: `packages/backend/.env`
 
 ```env
-DATABASE_URL=postgresql://tsh_db:Tsh123qwe@14.225.254.130:5434/lagimenu
+DATABASE_URL=postgresql://tsh_db:Tsh123qwe@14.225.254.130:5434/kivomenu
 PORT=3001
 NODE_ENV=development
 JWT_SECRET=super-secret-key-123
 FRONTEND_URL=http://localhost:3000
 
 # Firebase Cloud Messaging (Push Notifications)
-FIREBASE_PROJECT_ID=lagi-menu
-FIREBASE_CLIENT_EMAIL=firebase-adminsdk-xxxxx@lagi-menu.iam.gserviceaccount.com
+FIREBASE_PROJECT_ID=kivo-menu
+FIREBASE_CLIENT_EMAIL=firebase-adminsdk-xxxxx@kivo-menu.iam.gserviceaccount.com
 FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
 ```
 
@@ -80,9 +80,9 @@ File: `packages/frontend/.env`
 
 # Firebase Cloud Messaging
 VITE_FIREBASE_API_KEY=AIzaSy...
-VITE_FIREBASE_AUTH_DOMAIN=lagi-menu.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=lagi-menu
-VITE_FIREBASE_STORAGE_BUCKET=lagi-menu.appspot.com
+VITE_FIREBASE_AUTH_DOMAIN=kivo-menu.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=kivo-menu
+VITE_FIREBASE_STORAGE_BUCKET=kivo-menu.appspot.com
 VITE_FIREBASE_MESSAGING_SENDER_ID=123456789
 VITE_FIREBASE_APP_ID=1:123456789:web:abc...
 VITE_FIREBASE_VAPID_KEY=BDExxx...   # ← VAPID public key từ bước 3

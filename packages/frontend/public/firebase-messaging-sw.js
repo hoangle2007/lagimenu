@@ -15,9 +15,9 @@
   // FALLBACK: If the script fails to load or the variable is not set, we use hardcoded config
   const fallbackConfig = {
     apiKey: "AIzaSyAjEwZdp6EPjFDRlvuFbkTeiRLb3sV0VQ0",
-    authDomain: "lagi-menu01.firebaseapp.com",
-    projectId: "lagi-menu01",
-    storageBucket: "lagi-menu01.firebasestorage.app",
+    authDomain: "kivo-menu01.firebaseapp.com",
+    projectId: "kivo-menu01",
+    storageBucket: "kivo-menu01.firebasestorage.app",
     messagingSenderId: "941924534443",
     appId: "1:941924534443:web:d9de481a1a8fa94c150fee"
   };
@@ -40,7 +40,7 @@
     const notificationOptions = {
       body: body ?? '',
       icon: '/logo.png',
-      tag: data.type ?? 'lagimenu-notification',
+      tag: data.type ?? 'kivomenu-notification',
       // Hiện cho đến khi user tương tác
       requireInteraction: data.type === 'new_order',
       vibrate: [200, 100, 200],
@@ -54,7 +54,7 @@
         : [],
     };
 
-    return self.registration.showNotification(title ?? 'LagiMenu — Đơn hàng mới', notificationOptions);
+    return self.registration.showNotification(title ?? 'KivoMenu — Đơn hàng mới', notificationOptions);
   });
 
   // ─── Notification click ──────────────────────────────────────────────

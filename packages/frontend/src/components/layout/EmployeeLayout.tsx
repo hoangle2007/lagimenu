@@ -157,7 +157,7 @@ export default function EmployeeLayout() {
                 <span className="font-black text-lg">L</span>
               </div>
               <span className="text-lg font-black tracking-tighter text-slate-800 hidden sm:inline">
-                Lagi Menu
+                Kivo Menu
               </span>
             </Link>
 

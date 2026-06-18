@@ -1,5 +1,5 @@
 /**
- * Firebase Cloud Messaging — LagiMenu merchant push notifications.
+ * Firebase Cloud Messaging — KivoMenu merchant push notifications.
  *
  * Supports: Web (Chrome/Safari) + Flutter Web.
  *
@@ -132,10 +132,10 @@ export function onForegroundMessage(
     unsub = onMessage(messaging, (payload) => {
       // Browser notification
       if (Notification.permission === 'granted') {
-        new Notification(payload.notification?.title ?? 'LagiMenu', {
+        new Notification(payload.notification?.title ?? 'KivoMenu', {
           body: payload.notification?.body,
           icon: '/logo.png',
-          tag: 'lagimenu-order',
+          tag: 'kivomenu-order',
           requireInteraction: true,
         });
       }

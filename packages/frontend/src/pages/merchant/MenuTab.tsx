@@ -181,23 +181,10 @@ export const MenuTab: React.FC<{ merchantId: string }> = ({ merchantId }) => {
           })),
         })),
       );
-      if (cats.length > 0) setExpandedCats(new Set(cats.map((c: any) => c.id)));
+      if (cats.length > 0) setExpandedCats(prev => new Set([...prev, ...cats.map((c: any) => c.id)]));
     } catch {
-      const demo: Category[] = [
-        { id: 1, name: 'Trà Sữa', order: 0, products: [
-          { id: 1, name: 'Trà Sữa Trân Châu', price: '45000', description: 'Trà Ceylon + trân châu đen dai giòn', isAvailable: true, categoryId: 1, imageUrl: 'https://images.unsplash.com/photo-1558857563-b371033873b8?w=400' },
-          { id: 2, name: 'Khoai Môn Sữa Tươi', price: '40000', description: 'Khoai môn tím, sữa nguyên kem béo ngậy', isAvailable: false, categoryId: 1 },
-        ]},
-        { id: 2, name: 'Cà Phê', order: 1, products: [
-          { id: 3, name: 'Cà Phê Muối Kem', price: '48000', description: 'Espresso + kem muối đặc biệt', isAvailable: true, categoryId: 2, imageUrl: 'https://images.unsplash.com/photo-1592318951566-a7cb0861d76f?w=400' },
-          { id: 4, name: 'Bạc Xỉu', price: '28000', description: 'Cà phê sữa truyền thống Sài Gòn', isAvailable: true, categoryId: 2 },
-        ]},
-        { id: 3, name: 'Đồ Ăn Nhẹ', order: 2, products: [
-          { id: 5, name: 'Bánh Tráng Trộn', price: '20000', description: 'Khô bò, trứng cút, hành phi và rau răm', isAvailable: true, categoryId: 3 },
-        ]},
-      ];
-      setCategories(demo);
-      setExpandedCats(new Set([1, 2, 3]));
+      toast.error('Không tải được menu. Vui lòng thử lại!');
+      setCategories([]);
     } finally {
       setLoading(false);
     }
@@ -217,24 +204,21 @@ export const MenuTab: React.FC<{ merchantId: string }> = ({ merchantId }) => {
     try {
       if (editCat) {
         await api.put(`/menu/merchant/${merchantId}/categories/${editCat.id}`, { name: catName });
-        setCategories(p => p.map(c => c.id === editCat.id ? { ...c, name: catName } : c));
+        toast.success('Đã cập nhật danh mục!');
       } else {
-        const res = await api.post(`/menu/merchant/${merchantId}/categories`, { name: catName, order: categories.length });
-        const newCat = { ...res.data, products: [] };
-        setCategories(p => [...p, newCat]);
-        setExpandedCats(p => new Set([...p, newCat.id]));
+        await api.post(`/menu/merchant/${merchantId}/categories`, { name: catName, order: categories.length });
+        toast.success('Đã thêm danh mục!');
       }
-    } catch {
-      if (editCat) {
-        setCategories(p => p.map(c => c.id === editCat.id ? { ...c, name: catName } : c));
-      } else {
-        const tempId = Date.now();
-        setCategories(p => [...p, { id: tempId, name: catName, order: p.length, products: [] }]);
-        setExpandedCats(p => new Set([...p, tempId]));
-      }
+      setCatDialog(false);
+      // Reload từ server để đảm bảo danh sách luôn đồng bộ
+      await fetchMenu();
+    } catch (err: unknown) {
+      const msg =
+        (err as { response?: { data?: { message?: string } } })?.response?.data?.message ||
+        'Lưu danh mục thất bại. Vui lòng thử lại!';
+      toast.error(msg);
     } finally {
       setSavingCat(false);
-      setCatDialog(false);
     }
   };
 
@@ -304,42 +288,11 @@ export const MenuTab: React.FC<{ merchantId: string }> = ({ merchantId }) => {
           p.map((c) => (c.id === prodCatId ? { ...c, products: [...c.products, np] } : c)),
         );
       }
-    } catch {
-      if (editProd) {
-        setCategories((p) =>
-          p.map((c) => ({
-            ...c,
-            products: c.products.map((pr) =>
-              pr.id === editProd.id
-                ? ({
-                    ...pr,
-                    ...body,
-                    id: pr.id,
-                    options: JSON.stringify(body.options),
-                  } as Product)
-                : pr,
-            ),
-          })),
-        );
-      } else {
-        setCategories((p) =>
-          p.map((c) =>
-            c.id === prodCatId
-              ? {
-                  ...c,
-                  products: [
-                    ...c.products,
-                    {
-                      id: Date.now(),
-                      ...body,
-                      options: JSON.stringify(body.options),
-                    } as Product,
-                  ],
-                }
-              : c,
-          ),
-        );
-      }
+    } catch (err: unknown) {
+      const msg =
+        (err as { response?: { data?: { message?: string } } })?.response?.data?.message ||
+        'Lưu món thất bại. Vui lòng thử lại!';
+      toast.error(msg);
     } finally {
       setSavingProd(false);
       setProdDialog(false);
@@ -561,7 +514,12 @@ export const MenuTab: React.FC<{ merchantId: string }> = ({ merchantId }) => {
       }
       return { ...c, products: prods };
     })
-    .filter(c => c.products.length > 0);
+    // Chỉ ẩn category khi đang lọc theo search/sale/hidden và không còn sản phẩm nào khớp
+    // Không ẩn category rỗng khi không có bộ lọc nào (category mới tạo chưa có món)
+    .filter(c => {
+      const isFiltering = !!search || filterSaleOnly || filterHiddenOnly;
+      return isFiltering ? c.products.length > 0 : true;
+    });
 
   if (loading) return (
     <div className="flex items-center justify-center py-24"><Loader2 className="animate-spin text-primary" size={24} /></div>

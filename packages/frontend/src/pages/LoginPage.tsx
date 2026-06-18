@@ -73,7 +73,7 @@ export const LoginPage: React.FC = () => {
           <div className="w-full h-full rounded-[2.5rem] overflow-hidden bg-surface-container-low">
             <img 
               src="/des2.png" 
-              alt="Lagi Menu Concept" 
+              alt="Kivo Menu Concept" 
               className="w-full h-full object-cover"
             />
           </div>
@@ -103,7 +103,7 @@ export const LoginPage: React.FC = () => {
             <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-white shadow-lg shadow-primary/25">
               <ShoppingBag size={24} />
             </div>
-            <h1 className="text-2xl font-black text-slate-800 tracking-tighter">Lagi Menu</h1>
+            <h1 className="text-2xl font-black text-slate-800 tracking-tighter">Kivo Menu</h1>
           </div>
 
           <div className="mb-10 text-center lg:text-left">
@@ -113,7 +113,7 @@ export const LoginPage: React.FC = () => {
             <p className="text-slate-500 font-medium">
               {mode === 'login'
                 ? 'Hãy đăng nhập để quản lý cửa hàng của bạn một cách dễ dàng nhất.'
-                : 'Trở thành đối tác của Lagi Menu để tối ưu hóa quy trình bán hàng.'}
+                : 'Trở thành đối tác của Kivo Menu để tối ưu hóa quy trình bán hàng.'}
             </p>
           </div>
 

@@ -32,18 +32,18 @@ void main() async {
         ChangeNotifierProvider(create: (_) => StaffCallProvider()),
         ChangeNotifierProvider(create: (_) => EmployeeProvider()),
       ],
-      child: const LagiMenuAdmin(),
+      child: const KivoMenuAdmin(),
     ),
   );
 }
 
-class LagiMenuAdmin extends StatelessWidget {
-  const LagiMenuAdmin({super.key});
+class KivoMenuAdmin extends StatelessWidget {
+  const KivoMenuAdmin({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'LagiMenu Admin',
+      title: 'KivoMenu Admin',
       debugShowCheckedModeBanner: false,
       theme: GrabTheme.light,
       home: const AuthWrapper(),
@@ -137,7 +137,7 @@ class LoginSelectionScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 const Text(
-                  'LagiMenu',
+                  'KivoMenu',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 36,

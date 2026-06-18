@@ -151,7 +151,7 @@ const EmployeesTab: React.FC<{ merchantId: string; slug: string }> = ({ merchant
       <Card className="border-none shadow-premium rounded-[1.5rem] overflow-hidden bg-slate-900 text-white">
         <div className="px-6 py-4 flex flex-col md:flex-row items-center gap-4 justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-surface/10 rounded-xl flex items-center justify-center text-primary shadow-sm">
+            <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-primary shadow-sm">
               <User className="w-5 h-5" />
             </div>
             <div>
@@ -160,7 +160,7 @@ const EmployeesTab: React.FC<{ merchantId: string; slug: string }> = ({ merchant
             </div>
           </div>
           
-          <div className="flex-1 max-w-md w-full bg-surface/5 border border-white/10 rounded-xl px-4 py-2 flex items-center justify-between group overflow-hidden">
+          <div className="flex-1 max-w-md w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2 flex items-center justify-between group overflow-hidden">
             <code className="text-xs font-mono text-white/60 truncate mr-4">
               {slug ? `${window.location.origin}/shop/${slug}/login` : 'Chưa có mã quán (Thiết lập ở tab Cửa hàng)'}
             </code>
@@ -177,7 +177,7 @@ const EmployeesTab: React.FC<{ merchantId: string; slug: string }> = ({ merchant
                 toast.success('Đã sao chép link đăng nhập nhân viên (nhận lời mời từ chủ quán).');
               }}
               disabled={!slug}
-              className="rounded-lg h-8 px-3 bg-surface/10 hover:bg-surface text-white hover:text-slate-900 font-black text-[9px] uppercase tracking-widest transition-all shrink-0"
+              className="rounded-lg h-8 px-3 bg-white/10 hover:bg-white text-white hover:text-slate-900 font-black text-[9px] uppercase tracking-widest transition-all shrink-0"
             >
               Sao chép
             </Button>
@@ -351,7 +351,7 @@ const BlockedIpsCard: React.FC<{ merchantId: string }> = ({ merchantId }) => {
     <Card className="border-none shadow-premium rounded-3xl overflow-hidden bg-slate-900 text-white">
       <CardHeader className="pb-3 border-b border-white/10">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-surface/10 rounded-xl flex items-center justify-center">
+          <div className="w-8 h-8 bg-white/10 rounded-xl flex items-center justify-center">
             <Ban size={16} />
           </div>
           <div>
@@ -372,26 +372,26 @@ const BlockedIpsCard: React.FC<{ merchantId: string }> = ({ merchantId }) => {
                 value={ip}
                 onChange={(e) => setIp(e.target.value)}
                 placeholder="VD: 203.113.12.5"
-                className="h-10 bg-surface/10 border-white/20 text-white placeholder:text-white/40"
+                className="h-10 bg-white/10 border-white/20 text-white placeholder:text-white/40"
                 disabled={busy}
               />
               <Input
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
                 placeholder="Ghi chú (tuỳ chọn)"
-                className="h-10 bg-surface/10 border-white/20 text-white placeholder:text-white/40 sm:flex-1"
+                className="h-10 bg-white/10 border-white/20 text-white placeholder:text-white/40 sm:flex-1"
                 disabled={busy}
               />
               <Button type="button" onClick={() => void addIp()} disabled={busy || !ip.trim()} className="h-10 font-black uppercase text-[10px]">
                 Chặn
               </Button>
             </div>
-            <div className="max-h-48 overflow-y-auto space-y-2 rounded-xl border border-white/10 bg-surface/5 p-2">
+            <div className="max-h-48 overflow-y-auto space-y-2 rounded-xl border border-white/10 bg-white/5 p-2">
               {rows.length === 0 ? (
                 <p className="text-xs text-white/50 text-center py-4">Chưa có IP bị chặn</p>
               ) : (
                 rows.map((r) => (
-                  <div key={r.id} className="flex items-center justify-between gap-2 rounded-lg bg-surface/5 px-3 py-2 text-sm">
+                  <div key={r.id} className="flex items-center justify-between gap-2 rounded-lg bg-white/5 px-3 py-2 text-sm">
                     <div className="min-w-0">
                       <code className="text-xs font-mono text-emerald-300">{r.ip}</code>
                       {r.note && <p className="text-[10px] text-white/50 truncate">{r.note}</p>}
@@ -451,7 +451,7 @@ export const SettingsTab: React.FC<{ merchantId: string; onUpdate?: () => void }
     bankOwner: '',
     autoAccept: true,
     notifySound: true,
-    qrSecret: 'gulagi_secret',
+    qrSecret: 'gukivo_secret',
     slug: '',
     wifiSsid: '',
     wifiPassword: '',
@@ -574,7 +574,7 @@ export const SettingsTab: React.FC<{ merchantId: string; onUpdate?: () => void }
         bankOwner: d.bank_owner || '',
         autoAccept: d.auto_accept ?? true,
         notifySound: d.notify_sound ?? true,
-        qrSecret: d.qr_secret || 'gulagi_secret',
+        qrSecret: d.qr_secret || 'gukivo_secret',
         slug: d.slug || '',
         wifiSsid: d.wifi_ssid || d.wifiSsid || '',
         wifiPassword: d.wifi_password || d.wifiPassword || '',
@@ -1257,7 +1257,7 @@ export const SettingsTab: React.FC<{ merchantId: string; onUpdate?: () => void }
           <Card className="border-none shadow-premium rounded-[2rem] overflow-hidden bg-slate-900 text-white">
             <CardHeader className="pb-3 border-b border-white/5">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 bg-surface/10 rounded-xl flex items-center justify-center text-primary shadow-sm">
+                <div className="w-8 h-8 bg-white/10 rounded-xl flex items-center justify-center text-primary shadow-sm">
                   <User className="w-4 h-4" />
                 </div>
                 <div>
@@ -1268,7 +1268,7 @@ export const SettingsTab: React.FC<{ merchantId: string; onUpdate?: () => void }
             </CardHeader>
             <CardContent className="pt-6">
               <div className="flex flex-col md:flex-row items-center gap-4">
-                <div className="flex-1 w-full bg-surface/5 border border-white/10 rounded-2xl p-4 flex items-center justify-between group overflow-hidden">
+                <div className="flex-1 w-full bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center justify-between group overflow-hidden">
                   <code className="text-xs font-mono text-white/60 truncate mr-4">
                     {storeInfo.slug ? `${baseUrl}/shop/${storeInfo.slug}/login` : 'Chưa có mã quán (slug)'}
                   </code>
@@ -1277,7 +1277,7 @@ export const SettingsTab: React.FC<{ merchantId: string; onUpdate?: () => void }
                     size="sm" 
                     onClick={copyEmployeeLink}
                     disabled={!storeInfo.slug}
-                    className="rounded-xl h-9 px-4 bg-surface/10 hover:bg-surface text-white hover:text-slate-900 font-black text-[10px] uppercase tracking-widest transition-all shrink-0"
+                    className="rounded-xl h-9 px-4 bg-white/10 hover:bg-white text-white hover:text-slate-900 font-black text-[10px] uppercase tracking-widest transition-all shrink-0"
                   >
                     {saved ? <Check className="w-3 h-3 mr-2" /> : <Copy className="w-3 h-3 mr-2" />}
                     {saved ? 'Đã chép' : 'Sao chép'}

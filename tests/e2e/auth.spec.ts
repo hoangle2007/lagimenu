@@ -106,7 +106,7 @@ test.describe('Authentication', () => {
   test('Login shows error with non-existent email', async ({ page }) => {
     const loginPage = new LoginPage(page)
     await loginPage.goto()
-    await loginPage.login('nobody@lagi.test', 'anypassword')
+    await loginPage.login('nobody@kivo.test', 'anypassword')
 
     await loginPage.expectError()
   })
@@ -163,7 +163,7 @@ test.describe('Authentication', () => {
   test('Employee PIN login shows error with wrong PIN', async ({ page }) => {
     const empLoginPage = new EmployeeLoginPage(page)
     await empLoginPage.goto()
-    await empLoginPage.login('wrong@lagi.test', '9999')
+    await empLoginPage.login('wrong@kivo.test', '9999')
 
     await empLoginPage.expectError()
   })

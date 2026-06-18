@@ -21,7 +21,7 @@ export default function OwnerLayout() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-6">
             <Link to="/owner/dashboard" className="text-xl font-bold text-primary hover:text-indigo-700">
-              Lagi Menu
+              Kivo Menu
             </Link>
             <div className="hidden items-center gap-1 sm:flex">
               {ownerNav.map(({ label, to }) => (

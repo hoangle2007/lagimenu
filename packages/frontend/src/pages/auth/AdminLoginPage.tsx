@@ -14,6 +14,33 @@ export const AdminLoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleQuickLogin = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    try {
+      const devEmail = 'admin';
+      const devPassword = 'admin';
+      setEmail(devEmail);
+      setPassword(devPassword);
+      const { data } = await api.post('auth/login', { email: devEmail, password: devPassword });
+      const token = data.token || data.access_token;
+      const user = data.user;
+      const role = user?.role as string;
+
+      if (role === 'admin' || role === 'ADMIN' || role === 'super_admin') {
+        setAuth(token, user);
+        navigate('/admin/dashboard', { replace: true });
+      } else {
+        setError('Tài khoản này không có quyền truy cập hệ thống quản trị.');
+      }
+    } catch {
+      setError('Đăng nhập quản trị nhanh thất bại. Hãy chắc chắn backend và DB đang chạy.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
@@ -50,7 +77,7 @@ export const AdminLoginPage: React.FC = () => {
             <ShieldCheck size={32} />
           </div>
           <h1 className="text-3xl font-black text-white tracking-tight">Hệ thống Quản trị</h1>
-          <p className="text-slate-400 mt-2 font-medium">Lagi Menu Core Engine</p>
+          <p className="text-slate-400 mt-2 font-medium">Kivo Menu Core Engine</p>
         </div>
 
         <div className="bg-slate-900 rounded-[2.5rem] p-8 lg:p-10 shadow-2xl border border-slate-800">
@@ -69,7 +96,7 @@ export const AdminLoginPage: React.FC = () => {
                   type="text"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  placeholder="admin@lagi.vn"
+                  placeholder="admin@kivo.vn"
                   className="w-full pl-12 pr-4 h-14 bg-slate-800/50 border-2 border-transparent rounded-2xl text-white font-bold focus:bg-slate-800 focus:border-blue-500/30 outline-none transition-all placeholder:text-slate-600"
                 />
               </div>
@@ -99,6 +126,16 @@ export const AdminLoginPage: React.FC = () => {
             >
               {loading ? <Loader2 size={24} className="animate-spin" /> : <>Đăng nhập Admin <ShieldCheck size={20} /></>}
             </button>
+
+            {import.meta.env.DEV && (
+              <button
+                type="button"
+                onClick={handleQuickLogin}
+                className="w-full h-14 bg-slate-800 text-slate-300 font-bold rounded-2xl border border-slate-700 hover:bg-slate-700 transition-all flex items-center justify-center gap-2 mt-2"
+              >
+                Đăng nhập nhanh (Dev Admin)
+              </button>
+            )}
           </form>
         </div>
         

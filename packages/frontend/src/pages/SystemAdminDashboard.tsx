@@ -136,7 +136,7 @@ export const SystemAdminDashboard: React.FC<SystemAdminDashboardProps> = ({ admi
                 <LayoutDashboard size={20} className="text-white" />
               </div>
               <div>
-                <h1 className="font-bold text-slate-900 text-lg">Hệ Thống LagiMenu</h1>
+                <h1 className="font-bold text-slate-900 text-lg">Hệ Thống KivoMenu</h1>
                 <Badge className="bg-emerald-100 text-emerald-700 text-[9px] h-4 px-1.5 font-bold border-0">
                   SUPER ADMIN
                 </Badge>

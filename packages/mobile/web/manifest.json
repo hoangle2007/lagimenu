@@ -1,6 +1,6 @@
 {
-    "name": "lagimenu_admin",
-    "short_name": "lagimenu_admin",
+    "name": "kivomenu_admin",
+    "short_name": "kivomenu_admin",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

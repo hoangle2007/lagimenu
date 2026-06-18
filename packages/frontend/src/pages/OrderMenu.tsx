@@ -106,6 +106,29 @@ export const OrderMenu: React.FC = () => {
   const [showCustomerLoyaltyModal, setShowCustomerLoyaltyModal] = useState(false);
   const [customerLoyaltyPanelKey, setCustomerLoyaltyPanelKey] = useState(0);
 
+  const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
+
+  const favoritesKey = useMemo(() => {
+    return `kivo_favorites_${resolvedMerchantId}`;
+  }, [resolvedMerchantId]);
+
+  const loadFavorites = useCallback(() => {
+    try {
+      const favsStr = localStorage.getItem(favoritesKey);
+      setFavoriteIds(favsStr ? JSON.parse(favsStr) : []);
+    } catch {
+      setFavoriteIds([]);
+    }
+  }, [favoritesKey]);
+
+  useEffect(() => {
+    loadFavorites();
+    window.addEventListener('kivo_favorites_changed', loadFavorites);
+    return () => {
+      window.removeEventListener('kivo_favorites_changed', loadFavorites);
+    };
+  }, [loadFavorites]);
+
   const kitchenOrders = useMemo(
     () => filterKitchenOrders(existingOrders),
     [existingOrders],
@@ -247,9 +270,7 @@ export const OrderMenu: React.FC = () => {
         }
       }
 
-      if (menuRes.data.categories?.length > 0) {
-        if (!activeCategory) setActiveCategory(menuRes.data.categories[0].id);
-      }
+      // Active category will be selected via displayCategories useEffect
     } catch (error: any) {
       console.error('Error fetching data:', error);
       setNetworkWeak(true);
@@ -368,6 +389,25 @@ export const OrderMenu: React.FC = () => {
     const c = categories.find((cat) => isDrinksLikeCategoryName(cat.name));
     return c?.id ?? null;
   }, [categories]);
+
+  const displayCategories = useMemo(() => {
+    if (favoriteIds.length === 0) return categories;
+    const favProducts = allProducts.filter((p) => favoriteIds.includes(p.id));
+    if (favProducts.length === 0) return categories;
+
+    const favCategory: Category = {
+      id: -99,
+      name: '❤️ Yêu thích',
+      products: favProducts,
+    };
+    return [favCategory, ...categories];
+  }, [categories, favoriteIds, allProducts]);
+
+  useEffect(() => {
+    if (displayCategories.length > 0 && activeCategory === null) {
+      setActiveCategory(displayCategories[0].id);
+    }
+  }, [displayCategories, activeCategory]);
 
   /** Gợi ý: món đang sale (ghim + mức giảm) trước, sau đó ghép thêm món khác — một hàng kéo ngang. */
   const suggestedProducts = useMemo(() => {
@@ -661,7 +701,7 @@ export const OrderMenu: React.FC = () => {
           </div>
           <div className="min-w-0">
             <h1 className="text-base font-black text-on-surface tracking-tight leading-tight truncate">
-              {merchantInfo?.name || 'Lagi Menu'}
+              {merchantInfo?.name || 'Kivo Menu'}
             </h1>
             <p className="text-[11px] text-primary font-bold mt-0.5">
               {tableDisplayName ?? `Bàn ${tableId}`}
@@ -1008,7 +1048,7 @@ export const OrderMenu: React.FC = () => {
         {!filteredProducts && (
           <div className="sticky top-[61px] z-30 bg-[#fff7ed]/95 backdrop-blur-sm px-4 pt-3 pb-2 select-none overflow-hidden border-b border-[#fed7aa] shadow-sm">
             <div className="flex gap-2 overflow-x-auto no-scrollbar snap-x">
-              {categories.map(category => (
+              {displayCategories.map(category => (
                 <button
                   key={`nav-${category.id}`}
                   onClick={() => scrollToCategory(category.id)}
@@ -1027,7 +1067,7 @@ export const OrderMenu: React.FC = () => {
         {/* ─── MENU SECTIONS ─── */}
         {!filteredProducts && (
           <div className="px-4 pt-4 space-y-8">
-            {categories.map(category => (
+            {displayCategories.map(category => (
               <section
                 key={category.id}
                 ref={el => { categoryRefs.current[category.id] = el; }}
@@ -1049,7 +1089,7 @@ export const OrderMenu: React.FC = () => {
                 {/* Product list - 1 COLUMN LIST VIEW (Grab style) */}
                 <div className="space-y-4">
                   {(category.products ?? [])
-                    .filter((product) => !saleProductIdSet.has(product.id))
+                    .filter((product) => category.id === -99 || !saleProductIdSet.has(product.id))
                     .map(product => (
                     <div
                       key={product.id}
@@ -1062,7 +1102,7 @@ export const OrderMenu: React.FC = () => {
                           {product.name}
                         </h4>
                         <p className="text-[11px] text-stone-400 line-clamp-2 mb-2 leading-relaxed">
-                          {product.description || 'Hương vị thơm ngon hấp dẫn từ Lagi Menu.'}
+                          {product.description || 'Hương vị thơm ngon hấp dẫn từ Kivo Menu.'}
                         </p>
                         <div className="flex items-center justify-between mt-auto gap-2 flex-wrap">
                           {product.saleActive ? (

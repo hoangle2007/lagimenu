@@ -108,9 +108,9 @@ export const useMerchantSocket = (merchantId: string, options?: MerchantSocketOp
     }
     
     // Migrations: if old keys exist but new ones don't, migrate them
-    if (!localStorage.getItem('token') && localStorage.getItem('lagi_token')) {
-      localStorage.setItem('token', localStorage.getItem('lagi_token')!);
-      localStorage.setItem('user', localStorage.getItem('lagi_merchant')!);
+    if (!localStorage.getItem('token') && localStorage.getItem('kivo_token')) {
+      localStorage.setItem('token', localStorage.getItem('kivo_token')!);
+      localStorage.setItem('user', localStorage.getItem('kivo_merchant')!);
     }
 
     // Use the specific key from authStorage

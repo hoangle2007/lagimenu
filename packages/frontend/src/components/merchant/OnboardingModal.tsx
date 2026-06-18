@@ -16,7 +16,7 @@ interface OnboardingModalProps {
 
 const steps = [
   {
-    title: 'Chào mừng bạn đến với Lagi Menu! 🚀',
+    title: 'Chào mừng bạn đến với Kivo Menu! 🚀',
     description: 'Giải pháp quản lý quán chuyên nghiệp, giúp bạn tự động hóa quy trình bán hàng và phục vụ khách hàng tốt hơn.',
     icon: Rocket,
     image: '/onboarding-hero.png',
@@ -52,7 +52,7 @@ const steps = [
   },
   {
     title: 'Mọi thứ đã sẵn sàng! 🎉',
-    description: 'Bạn đã nắm vững các bước cơ bản. Hãy bắt đầu hành trình kinh doanh thành công cùng Lagi Menu ngay bây giờ!',
+    description: 'Bạn đã nắm vững các bước cơ bản. Hãy bắt đầu hành trình kinh doanh thành công cùng Kivo Menu ngay bây giờ!',
     icon: CheckCircle2,
     color: 'text-emerald-500',
     bg: 'bg-emerald-50',

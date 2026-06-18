@@ -3,13 +3,13 @@ version: '3.8'
 services:
   postgres:
     image: postgres:15
-    container_name: lagimenu-postgres
+    container_name: kivomenu-postgres
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_USER: lagimenu
+      POSTGRES_USER: kivomenu
       POSTGRES_PASSWORD: Hoang2007@
-      POSTGRES_DB: lagimenu
+      POSTGRES_DB: kivomenu
     volumes:
       - pgdata:/var/lib/postgresql/data
     restart: unless-stopped

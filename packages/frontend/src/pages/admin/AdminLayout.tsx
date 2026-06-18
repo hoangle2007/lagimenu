@@ -38,7 +38,7 @@ export default function AdminLayout({
     <div className="min-h-screen flex bg-slate-950 text-slate-100">
       <aside className="w-56 shrink-0 border-r border-slate-800 flex flex-col py-6 px-3">
         <div className="px-2 mb-8">
-          <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Lagi Admin</p>
+          <p className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Kivo Admin</p>
           <p className="text-sm font-semibold truncate">{adminName || 'Admin'}</p>
         </div>
         <nav className="flex-1 space-y-1">

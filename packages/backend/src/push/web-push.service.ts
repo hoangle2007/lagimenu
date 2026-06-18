@@ -41,7 +41,7 @@ export class WebPushService implements OnModuleInit {
     const priv = process.env.VAPID_PRIVATE_KEY;
     if (pub && priv) {
       webpush.setVapidDetails(
-        process.env.VAPID_SUBJECT || 'mailto:support@lagimenu.app',
+        process.env.VAPID_SUBJECT || 'mailto:support@kivomenu.app',
         pub,
         priv,
       );

@@ -176,7 +176,7 @@ export default function EmployeeForm({ employee, onSuccess, onCancel }: Props) {
             value={form.email}
             onChange={(e) => setField('email', e.target.value)}
             className={inputClass(!!errors.email)}
-            placeholder="nvana@lagi.vn"
+            placeholder="nvana@kivo.vn"
           />
         </Field>
       )}

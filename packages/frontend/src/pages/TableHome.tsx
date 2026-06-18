@@ -677,7 +677,7 @@ export const TableHome: React.FC = () => {
             </div>
             <div className="flex-1 pb-1">
               <h1 className="text-2xl font-black text-white leading-tight drop-shadow-md">
-                {merchantInfo?.name || 'Lagi Menu'}
+                {merchantInfo?.name || 'Kivo Menu'}
               </h1>
               <div className="flex items-center gap-2 mt-1">
                 <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ring-1 bg-primary-container text-primary ring-outline-variant">
@@ -978,13 +978,15 @@ export const TableHome: React.FC = () => {
 
         {/* ─── FOOTER INFO ─── */}
         <div className="mt-12 text-center pb-8">
-          <p className="text-[10px] font-bold text-stone-400 uppercase tracking-[0.2em] mb-4">Trải nghiệm dịch vụ số bởi Lagi Menu</p>
+          <p className="text-[10px] font-bold text-stone-400 uppercase tracking-[0.2em] mb-4">Trải nghiệm dịch vụ số bởi Kivo Menu</p>
           <div className="flex justify-center gap-6 opacity-30">
             <Sparkles size={16} />
             <UtensilsCrossed size={16} />
             <Heart size={16} />
           </div>
         </div>
+        {/* Spacer to clear bottom floating CTA button on mobile views */}
+        <div className="h-28" />
       </div>
 
       {/* ─── CALL TO ACTION FLOATING ─── */}
@@ -992,8 +994,8 @@ export const TableHome: React.FC = () => {
         <button
           type="button"
           onClick={() => navigate(`/order/${resolvedMerchantId}/${tableId}/menu`)}
-          className="w-full h-14 rounded-2xl shadow-2xl flex items-center justify-center gap-3 font-black text-sm active:scale-[0.98] transition-all text-white ring-2 ring-[#fdba74]"
-          style={{ background: 'linear-gradient(90deg, #f97316 0%, #ea580c 100%)' }}
+          className="w-full h-14 rounded-2xl shadow-2xl flex items-center justify-center gap-3 font-black text-sm active:scale-[0.98] transition-all text-white ring-2 ring-primary-container"
+          style={{ background: 'linear-gradient(90deg, var(--gradient-from) 0%, var(--gradient-to) 100%)' }}
         >
           Xem thực đơn & đặt món
           <ChevronRight size={18} />
