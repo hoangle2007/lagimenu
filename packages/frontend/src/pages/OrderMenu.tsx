@@ -604,7 +604,7 @@ export const OrderMenu: React.FC = () => {
   const SuccessToast = () => (
     <div className="fixed top-16 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2.5rem)] max-w-xs animate-in slide-in-from-top-4 duration-500">
       <div className="bg-primary text-white p-4 rounded-2xl shadow-2xl flex items-center gap-3">
-        <div className="w-8 h-8 bg-[#fff7ed]/60 rounded-full flex items-center justify-center">
+        <div className="w-8 h-8 bg-surface/60 rounded-full flex items-center justify-center">
           <Send size={16} />
         </div>
         <div className="flex-1">
@@ -624,28 +624,28 @@ export const OrderMenu: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="max-w-lg mx-auto bg-[#fff7ed] min-h-screen overflow-x-hidden pb-8">
-        <header className="sticky top-0 z-40 bg-[#fff7ed]/95 backdrop-blur-md border-b border-[#fed7aa] px-4 py-3 flex items-center justify-between">
-          <div className="h-10 w-32 rounded-full bg-[#ffedd5]/70 animate-pulse" />
+      <div className="max-w-lg mx-auto bg-surface min-h-screen overflow-x-hidden pb-8">
+        <header className="sticky top-0 z-40 bg-surface/95 backdrop-blur-md border-b border-outline-variant px-4 py-3 flex items-center justify-between">
+          <div className="h-10 w-32 rounded-full bg-surface-container-low/70 animate-pulse" />
           <div className="flex gap-2">
-            <div className="h-9 w-9 rounded-full bg-[#ffedd5]/70 animate-pulse" />
-            <div className="h-9 w-9 rounded-full bg-[#ffedd5]/70 animate-pulse" />
-            <div className="h-9 w-9 rounded-full bg-[#ffedd5]/70 animate-pulse" />
+            <div className="h-9 w-9 rounded-full bg-surface-container-low/70 animate-pulse" />
+            <div className="h-9 w-9 rounded-full bg-surface-container-low/70 animate-pulse" />
+            <div className="h-9 w-9 rounded-full bg-surface-container-low/70 animate-pulse" />
           </div>
         </header>
         <div className="px-4 pt-4 space-y-3">
-          <div className="h-32 rounded-3xl bg-[#ffedd5]/60 animate-pulse" />
-          <div className="h-16 rounded-2xl bg-[#ffedd5]/50 animate-pulse" />
+          <div className="h-32 rounded-3xl bg-surface-container-low/60 animate-pulse" />
+          <div className="h-16 rounded-2xl bg-surface-container-low/50 animate-pulse" />
         </div>
         <div className="px-4 pt-6 space-y-4">
           {[1, 2, 3, 4, 5].map((i) => (
-            <div key={i} className="flex gap-4 p-4 rounded-[2rem] bg-[#fff7ed] border border-[#fed7aa]/60 shadow-sm">
+            <div key={i} className="flex gap-4 p-4 rounded-[2rem] bg-surface border border-outline-variant/60 shadow-sm">
               <div className="flex-1 space-y-2.5 py-1">
-                <div className="h-4 bg-[#ffedd5]/90 rounded-md animate-pulse w-4/5" />
-                <div className="h-3 bg-[#ffedd5]/70 rounded-md animate-pulse w-full" />
-                <div className="h-3 bg-[#ffedd5]/70 rounded-md animate-pulse w-1/3" />
+                <div className="h-4 bg-surface-container-low/90 rounded-md animate-pulse w-4/5" />
+                <div className="h-3 bg-surface-container-low/70 rounded-md animate-pulse w-full" />
+                <div className="h-3 bg-surface-container-low/70 rounded-md animate-pulse w-1/3" />
               </div>
-              <div className="w-24 h-24 rounded-xl bg-[#ffedd5]/80 animate-pulse shrink-0" />
+              <div className="w-24 h-24 rounded-xl bg-surface-container-low/80 animate-pulse shrink-0" />
             </div>
           ))}
         </div>
@@ -671,7 +671,7 @@ export const OrderMenu: React.FC = () => {
   );
 
   return (
-    <div className="max-w-lg mx-auto bg-[#fff7ed] min-h-screen relative overflow-x-hidden text-on-surface notranslate" translate="no">
+    <div className="max-w-lg mx-auto bg-surface min-h-screen relative overflow-x-hidden text-on-surface notranslate" translate="no">
       <WifiWelcomeModal
         wifiSsid={merchantInfo?.wifiSsid ?? merchantInfo?.wifi_ssid}
         wifiPassword={merchantInfo?.wifiPassword ?? merchantInfo?.wifi_password}
@@ -679,15 +679,15 @@ export const OrderMenu: React.FC = () => {
       {orderSuccess && <SuccessToast />}
 
       {/* ─── STICKY HEADER ─── */}
-      <header className="bg-[#fff7ed]/95 backdrop-blur-md sticky top-0 z-40 px-4 py-3 flex items-center justify-between gap-3 border-b border-[#fed7aa]">
-        <div className="flex items-center gap-3">
+      <header className="bg-surface/95 backdrop-blur-md sticky top-0 z-40 px-4 py-3 flex items-center justify-between gap-1.5 sm:gap-3 border-b border-outline-variant">
+        <div className="flex items-center gap-1.5 sm:gap-3 min-w-0">
           <button
             onClick={() => navigate(`/order/${resolvedMerchantId}/${tableId}`)}
-            className="w-9 h-9 flex items-center justify-center rounded-full bg-[#ffedd5]/35 text-stone-700 active:scale-90 transition-all mr-1 border border-[#fed7aa]/60"
+            className="w-8 h-8 sm:w-9 h-9 flex items-center justify-center rounded-full bg-surface-container-low/35 text-stone-700 active:scale-90 transition-all mr-0.5 border border-outline-variant/60"
           >
-            <ArrowLeft size={20} />
+            <ArrowLeft className="w-4 h-4 sm:w-5 h-5" />
           </button>
-          <div className="w-10 h-10 rounded-xl bg-[#ffedd5]/30 flex items-center justify-center overflow-hidden flex-shrink-0 border border-[#fed7aa]/60 shadow-sm transition-transform active:scale-95">
+          <div className="w-8 h-8 sm:w-10 h-10 rounded-xl bg-surface-container-low/30 flex items-center justify-center overflow-hidden flex-shrink-0 border border-outline-variant/60 shadow-sm transition-transform active:scale-95">
             {merchantInfo?.logoUrl ? (
               <img src={merchantInfo.logoUrl} alt="Logo" className="w-full h-full object-cover" />
             ) : (
@@ -700,30 +700,30 @@ export const OrderMenu: React.FC = () => {
             )}
           </div>
           <div className="min-w-0">
-            <h1 className="text-base font-black text-on-surface tracking-tight leading-tight truncate">
+            <h1 className="text-sm sm:text-base font-black text-on-surface tracking-tight leading-tight truncate">
               {merchantInfo?.name || 'Kivo Menu'}
             </h1>
-            <p className="text-[11px] text-primary font-bold mt-0.5">
+            <p className="text-[10px] sm:text-[11px] text-primary font-bold mt-0.5">
               {tableDisplayName ?? `Bàn ${tableId}`}
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           {/* Search toggle */}
           <button
             onClick={handleRefresh}
-            className="w-9 h-9 flex items-center justify-center rounded-full bg-[#ffedd5]/30 text-stone-700 hover:bg-[#ffedd5]/50 active:scale-90 transition-all border border-[#fed7aa]/60"
+            className="w-8 h-8 sm:w-9 h-9 flex items-center justify-center rounded-full bg-surface-container-low/30 text-stone-700 hover:bg-surface-container-high active:scale-90 transition-all border border-outline-variant/60"
           >
-            <RefreshCw size={16} className={loading ? "animate-spin" : ""} />
+            <RefreshCw className={`w-4 h-4 sm:w-[16px] sm:h-[16px] ${loading ? "animate-spin" : ""}`} />
           </button>
 
           <button
             onClick={() => setShowSearch(v => !v)}
-            className={`w-9 h-9 flex items-center justify-center rounded-full transition-all active:scale-90 ${showSearch ? 'bg-primary text-white' : 'bg-[#ffedd5]/30 text-stone-700 hover:bg-[#ffedd5]/50'
+            className={`w-8 h-8 sm:w-9 h-9 flex items-center justify-center rounded-full transition-all active:scale-90 ${showSearch ? 'bg-primary text-white' : 'bg-surface-container-low/30 text-stone-700 hover:bg-surface-container-high'
               }`}
           >
-            <Search size={18} />
+            <Search className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
           </button>
 
           <button
@@ -733,9 +733,9 @@ export const OrderMenu: React.FC = () => {
               setCustomerLoyaltyPanelKey((k) => k + 1);
               setShowCustomerLoyaltyModal(true);
             }}
-            className="w-9 h-9 flex items-center justify-center rounded-full bg-amber-400/35 text-amber-950 hover:bg-amber-400/55 active:scale-90 transition-all border border-amber-500/40"
+            className="w-8 h-8 sm:w-9 h-9 flex items-center justify-center rounded-full bg-secondary/15 text-secondary hover:bg-secondary/25 active:scale-90 transition-all border border-secondary/30"
           >
-            <Gift size={18} />
+            <Gift className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
           </button>
 
           {/* Theme Switcher Toggle */}
@@ -743,15 +743,15 @@ export const OrderMenu: React.FC = () => {
             <button
               type="button"
               onClick={() => setShowThemePicker(v => !v)}
-              className={`w-9 h-9 flex items-center justify-center rounded-full transition-all active:scale-90 ${
+              className={`w-8 h-8 sm:w-9 h-9 flex items-center justify-center rounded-full transition-all active:scale-90 ${
                 showThemePicker ? 'bg-primary text-white' : 'bg-surface-container-low text-stone-700 hover:bg-surface-container-high border border-outline-variant/60'
               }`}
               title="Đổi màu giao diện"
             >
-              <Paintbrush size={16} className={showThemePicker ? "text-white" : "text-primary"} />
+              <Paintbrush className={`w-4 h-4 sm:w-[16px] sm:h-[16px] ${showThemePicker ? "text-white" : "text-primary"}`} />
             </button>
             {showThemePicker && (
-              <div className="absolute right-0 top-11 z-[350] flex flex-col gap-2 bg-surface p-2 rounded-2xl shadow-xl border border-outline-variant/60 animate-in zoom-in-95 duration-150">
+              <div className="absolute right-0 top-10 sm:top-11 z-[350] flex flex-col gap-2 bg-surface p-2 rounded-2xl shadow-xl border border-outline-variant/60 animate-in zoom-in-95 duration-150">
                 {['orange', 'blue', 'pink', 'green', 'red'].map((t) => {
                   const colorMap: Record<string, string> = {
                     orange: 'bg-orange-500',
@@ -781,12 +781,12 @@ export const OrderMenu: React.FC = () => {
 
           {/* Cart icon */}
           <button
-            className="relative w-9 h-9 flex items-center justify-center rounded-full bg-[#ffedd5]/30 text-primary hover:bg-[#ffedd5]/50 active:scale-90 transition-all border border-[#fed7aa]/60"
+            className="relative w-8 h-8 sm:w-9 h-9 flex items-center justify-center rounded-full bg-surface-container-low/30 text-primary hover:bg-surface-container-high active:scale-90 transition-all border border-outline-variant/60"
             onClick={() => (cartItemCount > 0 || kitchenOrders.length > 0) && setShowCart(true)}
           >
-            <ShoppingCart size={18} />
+            <ShoppingCart className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
             {(cartItemCount > 0 || kitchenOrders.length > 0) && (
-              <span className="absolute -top-1 -right-1 bg-primary text-white text-[9px] font-black min-w-[17px] h-[17px] flex items-center justify-center rounded-full shadow-sm border border-white">
+              <span className="absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 bg-primary text-white text-[8px] sm:text-[9px] font-black min-w-[15px] h-[15px] sm:min-w-[17px] sm:h-[17px] flex items-center justify-center rounded-full shadow-sm border border-white">
                 {cartItemCount > 0 ? cartItemCount : kitchenOrders.length}
               </span>
             )}
@@ -796,7 +796,7 @@ export const OrderMenu: React.FC = () => {
 
       {/* ─── SEARCH BAR (toggle) ─── */}
       {showSearch && (
-        <div className="px-4 py-3 bg-[#fff7ed]/95 backdrop-blur-sm border-b border-[#fed7aa] animate-in slide-in-from-top-2 duration-300">
+        <div className="px-4 py-3 bg-surface/95 backdrop-blur-sm border-b border-outline-variant animate-in slide-in-from-top-2 duration-300">
           <div className="relative">
             <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none" />
             <input
@@ -805,7 +805,7 @@ export const OrderMenu: React.FC = () => {
               placeholder="Tìm món ăn hoặc trà sữa..."
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-[#ffedd5]/55 rounded-full text-sm placeholder:text-stone-400 focus:ring-1 focus:ring-primary/20 outline-none transition-all border border-transparent focus:border-primary/20"
+              className="w-full pl-10 pr-4 py-2.5 bg-surface-container-low/55 rounded-full text-sm placeholder:text-stone-400 focus:ring-1 focus:ring-primary/20 outline-none transition-all border border-transparent focus:border-primary/20"
             />
           </div>
         </div>
@@ -827,25 +827,25 @@ export const OrderMenu: React.FC = () => {
       {!sessionError && (hasSentToKitchen || hasPreparing || hasServed) && (
         <div className="mx-4 mt-3 flex flex-wrap items-center gap-2">
           {hasSentToKitchen && (
-            <span className="rounded-full bg-[#ffedd5]/50 border border-[#fed7aa]/70 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-[#9a3412]">
+            <span className="rounded-full bg-surface-container-low/50 border border-outline-variant/70 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-primary">
               Đã gửi bếp
             </span>
           )}
           {hasPreparing && (
-            <span className="rounded-full bg-[#ffedd5]/50 border border-[#fed7aa]/70 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-[#9a3412]">
+            <span className="rounded-full bg-surface-container-low/50 border border-outline-variant/70 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-primary">
               Đang làm
             </span>
           )}
           {hasServed && (
-            <span className="rounded-full bg-[#ffedd5]/50 border border-[#fed7aa]/70 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-[#9a3412]">
+            <span className="rounded-full bg-surface-container-low/50 border border-outline-variant/70 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-primary">
               Đã ra món
             </span>
           )}
         </div>
       )}
       {networkWeak && (
-        <div className="mx-4 mt-3 p-3 bg-[#ffedd5]/50 border border-[#fed7aa]/70 rounded-2xl">
-          <p className="text-[11px] font-bold text-[#9a3412]">
+        <div className="mx-4 mt-3 p-3 bg-surface-container-low/50 border border-outline-variant/70 rounded-2xl">
+          <p className="text-[11px] font-bold text-primary">
             Mạng yếu. Bạn có thể bấm Làm mới để thử lại.
           </p>
         </div>
@@ -857,18 +857,18 @@ export const OrderMenu: React.FC = () => {
         onManualRefresh={refetchActiveOrdersOnly}
       />
 
-      <main className="pb-36 bg-[#fff7ed] overflow-x-hidden">
+      <main className="pb-36 bg-surface overflow-x-hidden">
         {/* ─── SHOP BANNER & INFO ─── */}
         {!filteredProducts && (
           <div className="px-4 pt-4 space-y-3 animate-in fade-in slide-in-from-top-2 duration-700">
             {merchantInfo?.bannerUrl && (
-              <div className="w-full h-32 rounded-3xl overflow-hidden shadow-premium-sm border border-[#fed7aa]/60">
+              <div className="w-full h-32 rounded-3xl overflow-hidden shadow-premium-sm border border-outline-variant/60">
                 <img src={merchantInfo.bannerUrl} alt="Banner" className="w-full h-full object-cover" />
               </div>
             )}
 
             {(merchantInfo?.address || merchantInfo?.phone) && (
-              <div className="bg-[#fff7ed]/70 rounded-2xl p-3 px-4 border border-[#fed7aa]/80 flex flex-col gap-2 shadow-sm">
+              <div className="bg-surface/70 rounded-2xl p-3 px-4 border border-outline-variant/80 flex flex-col gap-2 shadow-sm">
                 {merchantInfo.address && (
                   <div className="flex items-start gap-2.5">
                     <MapPin size={13} className="text-primary mt-0.5 flex-shrink-0" />
@@ -896,10 +896,10 @@ export const OrderMenu: React.FC = () => {
               {filteredProducts.map(product => (
                 <button
                   key={product.id}
-                  className="w-full flex gap-4 items-center bg-[#fff7ed] rounded-3xl p-3 active:bg-[#ffedd5]/60 transition-all text-left border border-[#fed7aa]/70 shadow-sm"
+                  className="w-full flex gap-4 items-center bg-surface rounded-3xl p-3 active:bg-surface-container-low/60 transition-all text-left border border-outline-variant/70 shadow-sm"
                   onClick={() => setSelectedProduct(product)}
                 >
-                  <div className="relative w-16 h-16 rounded-2xl overflow-hidden flex-shrink-0 border border-[#fed7aa]/60 shadow-sm bg-[#ffedd5]/30 flex items-center justify-center">
+                  <div className="relative w-16 h-16 rounded-2xl overflow-hidden flex-shrink-0 border border-outline-variant/60 shadow-sm bg-surface-container-low/30 flex items-center justify-center">
                     {product.imageUrl ? (
                       <img src={product.imageUrl} alt={product.name} className="w-full h-full object-cover" />
                     ) : (
@@ -962,7 +962,7 @@ export const OrderMenu: React.FC = () => {
               aria-label="Gợi ý món, vuốt ngang để xem"
             >
               <div
-                className="pointer-events-none absolute right-0 top-0 bottom-2 w-10 z-10 bg-gradient-to-l from-[#fff7ed] to-transparent"
+                className="pointer-events-none absolute right-0 top-0 bottom-2 w-10 z-10 bg-gradient-to-l from-surface to-transparent"
                 aria-hidden
               />
               {suggestedProducts.map((product) => (
@@ -972,7 +972,7 @@ export const OrderMenu: React.FC = () => {
                   className={`relative flex-shrink-0 w-32 h-40 rounded-2xl overflow-hidden snap-start shadow-sm group ${
                     product.saleActive
                       ? 'border-2 border-red-200/90'
-                      : 'border border-[#fed7aa]/90'
+                      : 'border border-outline-variant/90'
                   }`}
                 >
                   {product.imageUrl ? (
@@ -999,7 +999,7 @@ export const OrderMenu: React.FC = () => {
                       )}
                       <div className="absolute bottom-0 left-0 right-0 p-2.5 text-left">
                         <h3 className="text-white font-bold text-[10px] leading-tight mb-0.5 line-clamp-2">{product.name}</h3>
-                        <p className="text-orange-100 font-black text-[11px]">
+                        <p className="text-primary-container font-black text-[11px]">
                           {Intl.NumberFormat('vi-VN').format(getProductUnitBase(product))}đ
                         </p>
                         {product.saleActive && (
@@ -1013,8 +1013,8 @@ export const OrderMenu: React.FC = () => {
                     <div
                       className={`absolute inset-0 flex flex-col justify-end p-2.5 text-left ${
                         product.saleActive
-                          ? 'bg-gradient-to-b from-red-50 to-orange-100'
-                          : 'bg-gradient-to-b from-[#ffedd5] to-[#fdba74]/50'
+                          ? 'bg-gradient-to-b from-red-50 to-primary-container'
+                          : 'bg-gradient-to-b from-surface-container-low to-surface-container-highest/50'
                       }`}
                     >
                       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -1028,7 +1028,7 @@ export const OrderMenu: React.FC = () => {
                       <h3 className="relative z-10 text-stone-900 font-bold text-[10px] leading-tight mb-0.5 line-clamp-2">
                         {product.name}
                       </h3>
-                      <p className="relative z-10 text-[#c2410c] font-black text-[11px]">
+                      <p className="relative z-10 text-primary font-black text-[11px]">
                         {Intl.NumberFormat('vi-VN').format(getProductUnitBase(product))}đ
                       </p>
                       {product.saleActive && (
@@ -1046,7 +1046,7 @@ export const OrderMenu: React.FC = () => {
 
         {/* ─── CATEGORY NAVIGATION ─── */}
         {!filteredProducts && (
-          <div className="sticky top-[61px] z-30 bg-[#fff7ed]/95 backdrop-blur-sm px-4 pt-3 pb-2 select-none overflow-hidden border-b border-[#fed7aa] shadow-sm">
+          <div className="sticky top-[61px] z-30 bg-surface/95 backdrop-blur-sm px-4 pt-3 pb-2 select-none overflow-hidden border-b border-outline-variant shadow-sm">
             <div className="flex gap-2 overflow-x-auto no-scrollbar snap-x">
               {displayCategories.map(category => (
                 <button
@@ -1054,7 +1054,7 @@ export const OrderMenu: React.FC = () => {
                   onClick={() => scrollToCategory(category.id)}
                   className={`flex-shrink-0 px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-300 snap-start active:scale-95 border ${activeCategory === category.id
                     ? 'bg-primary text-white border-primary shadow-sm'
-                    : 'bg-[#ffedd5]/30 text-stone-600 border-[#fed7aa]/60 hover:bg-[#ffedd5]/50'
+                    : 'bg-surface-container-low/30 text-stone-600 border-outline-variant/60 hover:bg-surface-container-low/55'
                     }`}
                 >
                   {category.name}
@@ -1093,7 +1093,7 @@ export const OrderMenu: React.FC = () => {
                     .map(product => (
                     <div
                       key={product.id}
-                  className="group relative flex gap-4 bg-[#fff7ed] hover:bg-[#ffedd5]/35 active:bg-[#ffedd5]/55 transition-all duration-200 cursor-pointer p-4 rounded-[2rem]  shadow-sm border border-[#fed7aa]/50"
+                  className="group relative flex gap-4 bg-surface hover:bg-surface-container-low/35 active:bg-surface-container-low/55 transition-all duration-200 cursor-pointer p-4 rounded-[2rem] shadow-sm border border-outline-variant/50"
                       onClick={() => setSelectedProduct(product)}
                     >
                       {/* Info on left */}
@@ -1128,7 +1128,7 @@ export const OrderMenu: React.FC = () => {
                       </div>
 
                       {/* Thumbnail on right */}
-                  <div className="relative w-24 h-24 rounded-xl overflow-hidden flex-shrink-0 bg-[#ffedd5]/25 border border-[#fed7aa]/60 shadow-sm self-start">
+                  <div className="relative w-24 h-24 rounded-xl overflow-hidden flex-shrink-0 bg-surface-container-low/25 border border-outline-variant/60 shadow-sm self-start">
                         {product.imageUrl ? (
                           <img
                             src={product.imageUrl}
@@ -1136,7 +1136,7 @@ export const OrderMenu: React.FC = () => {
                             className="w-full h-full object-cover transition-all duration-500"
                           />
                         ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-[#ffedd5]/25">
+                      <div className="w-full h-full flex items-center justify-center bg-surface-container-low/25">
                             <Plus size={24} className="text-stone-200" />
                           </div>
                         )}
@@ -1158,11 +1158,11 @@ export const OrderMenu: React.FC = () => {
         <div className="fixed bottom-0 left-0 right-0 px-5 pb-[calc(1.5rem+env(safe-area-inset-bottom))] z-50 animate-in fade-in slide-in-from-bottom-5 duration-500">
           <button
             onClick={() => setShowCart(true)}
-            className="w-full max-w-sm mx-auto min-h-[56px] py-2.5 rounded-full shadow-lg flex items-center justify-between px-5 gap-3 active:scale-[0.98] transition-all border border-[#fdba74] bg-[#ffedd5] text-stone-900"
+            className="w-full max-w-sm mx-auto min-h-[56px] py-2.5 rounded-full shadow-lg flex items-center justify-between px-5 gap-3 active:scale-[0.98] transition-all border border-outline-variant bg-surface-container-high text-stone-900"
           >
             <div className="flex flex-col items-start gap-0.5 min-w-0 flex-1 text-left">
               <div className="flex items-center gap-3 min-w-0">
-                <span className="w-6 h-6 bg-[#ea580c] rounded-full flex items-center justify-center text-white text-[10px] font-black shrink-0">
+                <span className="w-6 h-6 bg-primary rounded-full flex items-center justify-center text-white text-[10px] font-black shrink-0">
                   {cartItemCount > 0 ? cartItemCount : kitchenOrders.length > 0 ? kitchenOrders.length : 0}
                 </span>
                 <span className="font-black text-sm truncate text-stone-800">
@@ -1186,7 +1186,7 @@ export const OrderMenu: React.FC = () => {
             </div>
             <div className="flex items-center gap-2 shrink-0">
               <div className="flex flex-col items-end gap-0.5">
-                <span className="font-black text-sm tabular-nums text-[#9a3412]">
+                <span className="font-black text-sm tabular-nums text-primary">
                   {Intl.NumberFormat('vi-VN').format(Number(grandTotal) || 0)}đ
                 </span>
                 <span className="text-[9px] font-semibold text-stone-600">

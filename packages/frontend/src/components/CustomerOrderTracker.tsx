@@ -30,34 +30,34 @@ function statusMeta(statusRaw: string): { label: string; className: string; step
   if (s === 'pending' || s === 'confirmed') {
     return {
       label: s === 'confirmed' ? 'Đã xác nhận' : 'Chờ bếp nhận',
-      className: 'bg-[#ffedd5] text-[#9a3412] border-[#fed7aa]',
+      className: 'bg-primary-container text-on-primary-container border-primary/20',
       step: 1,
     };
   }
   if (s === 'preparing' || s === 'in_progress') {
     return {
       label: 'Đang chế biến',
-      className: 'bg-[#ffedd5] text-[#9a3412] border-[#fed7aa]',
+      className: 'bg-primary-container text-on-primary-container border-primary/20',
       step: 2,
     };
   }
   if (s === 'ready') {
     return {
       label: 'Sẵn sàng — chờ mang ra',
-      className: 'bg-[#ffedd5] text-[#9a3412] border-[#fed7aa]',
+      className: 'bg-primary-container text-on-primary-container border-primary/20',
       step: 3,
     };
   }
   if (s === 'completed') {
     return {
       label: 'Đã ra món',
-      className: 'bg-[#ffedd5] text-[#9a3412] border-[#fed7aa]',
+      className: 'bg-primary-container text-on-primary-container border-primary/20',
       step: 4,
     };
   }
   return {
     label: s,
-    className: 'bg-[#ffedd5] text-[#9a3412] border-[#fed7aa]',
+    className: 'bg-primary-container text-on-primary-container border-primary/20',
     step: 0,
   };
 }
@@ -82,11 +82,11 @@ export const CustomerOrderTracker: React.FC<Props> = ({
   if (sorted.length === 0) return null;
 
   return (
-    <section className="mx-4 mt-3 rounded-2xl border border-[#fed7aa] bg-[#ffedd5]/40 backdrop-blur-sm shadow-sm overflow-hidden">
+    <section className="mx-4 mt-3 rounded-2xl border border-outline-variant bg-surface-container-low/40 backdrop-blur-sm shadow-sm overflow-hidden">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between gap-3 px-4 py-3 text-left bg-[#ffedd5]/20 hover:bg-[#ffedd5]/35 transition-colors"
+        className="w-full flex items-center justify-between gap-3 px-4 py-3 text-left bg-surface-container-low/20 hover:bg-surface-container-low/35 transition-colors"
       >
         <div className="flex items-center gap-2 min-w-0">
           <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
@@ -110,7 +110,7 @@ export const CustomerOrderTracker: React.FC<Props> = ({
                 onManualRefresh();
               }}
               disabled={loading}
-              className="p-2 rounded-xl bg-[#fff7ed] border border-[#fed7aa] text-stone-700 hover:bg-[#ffedd5]/60 disabled:opacity-50"
+              className="p-2 rounded-xl bg-surface border border-outline-variant text-stone-700 hover:bg-surface-container-low/60 disabled:opacity-50"
               aria-label="Làm mới trạng thái"
             >
               <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
@@ -132,7 +132,7 @@ export const CustomerOrderTracker: React.FC<Props> = ({
             return (
               <div
                 key={order.id}
-                className="rounded-xl border border-[#fed7aa]/60 bg-[#fff7ed]/70 p-3 space-y-2"
+                className="rounded-xl border border-outline-variant/60 bg-surface/70 p-3 space-y-2"
               >
                 <div className="flex items-start justify-between gap-2">
                   <div>
@@ -156,13 +156,13 @@ export const CustomerOrderTracker: React.FC<Props> = ({
                     <div
                       key={step}
                       className={`h-1 flex-1 rounded-full ${
-                        st.step >= step ? 'bg-primary' : 'bg-[#fed7aa]/45'
+                        st.step >= step ? 'bg-primary' : 'bg-outline-variant/45'
                       }`}
                     />
                   ))}
                 </div>
 
-                <ul className="space-y-1 pt-1 border-t border-[#fed7aa]/60">
+                <ul className="space-y-1 pt-1 border-t border-outline-variant/60">
                   {items.slice(0, 4).map((it, idx) => (
                     <li
                       key={`${order.id}-it-${idx}`}
@@ -187,7 +187,7 @@ export const CustomerOrderTracker: React.FC<Props> = ({
                   )}
                 </ul>
 
-                <div className="flex justify-between items-center pt-1 border-t border-dashed border-[#fed7aa]/60">
+                <div className="flex justify-between items-center pt-1 border-t border-dashed border-outline-variant/60">
                   <span className="text-[10px] font-bold text-stone-500 uppercase tracking-wide">
                     Tạm tính đơn
                   </span>

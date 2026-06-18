@@ -162,7 +162,7 @@ export const CartModal: React.FC<CartModalProps> = ({
       >
         {/* Handle for dragging feel */}
         <div className="w-full py-3 flex justify-center cursor-pointer" onClick={onClose}>
-            <div className="w-12 h-1.5 bg-[#fed7aa]/70 rounded-full" />
+            <div className="w-12 h-1.5 bg-outline-variant/70 rounded-full" />
         </div>
 
         {/* Header */}
@@ -170,11 +170,11 @@ export const CartModal: React.FC<CartModalProps> = ({
           <div>
             <h2 className="text-2xl font-black text-stone-900 tracking-tight">Giỏ hàng</h2>
             <div className="flex gap-2 mt-1">
-                <Badge className="bg-orange-100 text-orange-800 border-0 rounded-lg text-[10px] font-black py-0.5">
+                <Badge className="bg-primary-container text-on-primary-container border-0 rounded-lg text-[10px] font-black py-0.5">
                     {items.length} món mới
                 </Badge>
                 {existingOrders.length > 0 && (
-                    <Badge className="bg-[#ffedd5] text-[#9a3412] border-0 rounded-lg text-[10px] font-black py-0.5">
+                    <Badge className="bg-surface-container-high text-primary border-0 rounded-lg text-[10px] font-black py-0.5">
                         {existingOrders.length} đơn đã đặt
                     </Badge>
                 )}
@@ -182,7 +182,7 @@ export const CartModal: React.FC<CartModalProps> = ({
           </div>
           <button 
             onClick={onClose}
-            className="w-11 h-11 rounded-2xl bg-surface shadow-sm flex items-center justify-center text-stone-400 active:scale-95 transition-all border border-[#fed7aa]/60"
+            className="w-11 h-11 rounded-2xl bg-surface shadow-sm flex items-center justify-center text-stone-400 active:scale-95 transition-all border border-outline-variant/60"
           >
             <X size={20} />
           </button>
@@ -194,12 +194,12 @@ export const CartModal: React.FC<CartModalProps> = ({
           {/* Section: Floating Customer Info (Top Priority) */}
           {items.length > 0 && (
             <div className="animate-in slide-in-from-top-4 duration-500 delay-150">
-              <div className="bg-orange-50/50 rounded-[2rem] p-5 shadow-sm border border-orange-100/50 flex flex-col gap-4 relative overflow-hidden">
+              <div className="bg-primary-container/20 rounded-[2rem] p-5 shadow-sm border border-outline-variant/50 flex flex-col gap-4 relative overflow-hidden">
                 {/* Decorative background element */}
-                <div className="absolute -top-6 -right-6 w-20 h-20 bg-orange-100/20 rounded-full blur-2xl" />
+                <div className="absolute -top-6 -right-6 w-20 h-20 bg-primary-container/20 rounded-full blur-2xl" />
                 
                 <div className="flex items-center gap-2 mb-1">
-                  <div className="w-8 h-8 rounded-xl bg-orange-100 flex items-center justify-center text-orange-600">
+                  <div className="w-8 h-8 rounded-xl bg-primary-container flex items-center justify-center text-primary">
                     <Info size={16} />
                   </div>
                   <div>
@@ -219,7 +219,7 @@ export const CartModal: React.FC<CartModalProps> = ({
                     <input 
                       type="text"
                       placeholder="Tên của bạn (VD: Anh Nam...)" 
-                      className="w-full h-13 bg-[#fff7ed] border-[#fed7aa]/70 rounded-2xl px-5 text-sm focus:ring-2 focus:ring-primary/20 transition-all border outline-none font-bold placeholder:text-stone-300" 
+                      className="w-full h-13 bg-surface border-outline-variant/70 rounded-2xl px-5 text-sm focus:ring-2 focus:ring-primary/20 transition-all border outline-none font-bold placeholder:text-stone-300" 
                       value={customerName}
                       onChange={e => setCustomerName(e.target.value)}
                     />
@@ -228,7 +228,7 @@ export const CartModal: React.FC<CartModalProps> = ({
                     <input 
                       type="tel"
                       placeholder={loyaltyOptIn ? 'Số điện thoại (bắt buộc để tích điểm)' : 'Số điện thoại (tùy chọn)'} 
-                      className="w-full h-13 bg-[#fff7ed] border-[#fed7aa]/70 rounded-2xl px-5 text-sm focus:ring-2 focus:ring-primary/20 transition-all border outline-none font-medium placeholder:text-stone-300" 
+                      className="w-full h-13 bg-surface border-outline-variant/70 rounded-2xl px-5 text-sm focus:ring-2 focus:ring-primary/20 transition-all border outline-none font-medium placeholder:text-stone-300" 
                       value={customerPhone}
                       onChange={e => setCustomerPhone(e.target.value)}
                     />
@@ -242,14 +242,14 @@ export const CartModal: React.FC<CartModalProps> = ({
           {items.length > 0 && (
             <div className="space-y-4">
               <div className="flex items-center gap-2 px-1">
-                <div className="w-1 h-4 bg-orange-600 rounded-full" />
+                <div className="w-1 h-4 bg-primary rounded-full" />
                 <h3 className="text-xs font-black text-stone-400 uppercase tracking-widest">Món mới chọn</h3>
               </div>
               
               <div className="space-y-3">
                 {items.map((item, index) => (
-                  <div key={`${item.product.id}-${index}`} className="bg-surface p-3.5 rounded-[1.5rem] shadow-sm border border-[#fed7aa]/70 flex gap-4 transition-all">
-                    <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 bg-surface-container-high border border-[#fed7aa]/60 flex items-center justify-center relative">
+                  <div key={`${item.product.id}-${index}`} className="bg-surface p-3.5 rounded-[1.5rem] shadow-sm border border-outline-variant/70 flex gap-4 transition-all">
+                    <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 bg-surface-container-high border border-outline-variant/60 flex items-center justify-center relative">
                       {item.product.imageUrl ? (
                         <img src={item.product.imageUrl} alt={item.product.name} className="w-full h-full object-cover" />
                       ) : (
@@ -274,7 +274,7 @@ export const CartModal: React.FC<CartModalProps> = ({
                       
                       <div className="flex items-center justify-between mt-auto">
                         <div className="flex flex-col gap-0.5">
-                          <span className="text-orange-700 font-black text-sm">
+                          <span className="text-primary font-black text-sm">
                             {Intl.NumberFormat('vi-VN').format(lineTotalForCartItem(item))}đ
                           </span>
                           {item.product.saleActive && (
@@ -284,7 +284,7 @@ export const CartModal: React.FC<CartModalProps> = ({
                           )}
                         </div>
                         
-                        <div className="flex items-center bg-surface-container-low rounded-xl p-1 border border-[#fed7aa]/50">
+                        <div className="flex items-center bg-surface-container-low rounded-xl p-1 border border-outline-variant/50">
                             <button 
                                 onClick={() => onUpdateQuantity(item.product.id, item.options, -1)}
                                 className="w-7 h-7 flex items-center justify-center bg-surface text-stone-400 rounded-lg active:scale-90 shadow-sm transition-all"
@@ -294,7 +294,7 @@ export const CartModal: React.FC<CartModalProps> = ({
                             <span className="mx-3 font-black text-stone-700 text-sm">{item.quantity}</span>
                             <button 
                                 onClick={() => onUpdateQuantity(item.product.id, item.options, 1)}
-                                className="w-7 h-7 flex items-center justify-center bg-orange-600 text-white rounded-lg active:scale-95 shadow-md shadow-orange-600/20 transition-all font-bold"
+                                className="w-7 h-7 flex items-center justify-center bg-primary text-white rounded-lg active:scale-95 shadow-md shadow-primary/20 transition-all font-bold"
                             >
                                 <Plus size={12} strokeWidth={3} />
                             </button>
@@ -310,7 +310,7 @@ export const CartModal: React.FC<CartModalProps> = ({
           {/* Empty States */}
           {items.length === 0 && existingOrders.length === 0 && (
             <div className="py-20 flex flex-col items-center">
-              <div className="w-24 h-24 bg-surface rounded-3xl flex items-center justify-center shadow-sm border border-[#fed7aa]/60 text-stone-200 mb-6 group">
+              <div className="w-24 h-24 bg-surface rounded-3xl flex items-center justify-center shadow-sm border border-outline-variant/60 text-stone-200 mb-6 group">
                 <ShoppingBasket size={48} className="group-hover:scale-110 transition-transform duration-500" />
               </div>
               <h3 className="text-lg font-black text-stone-900 mb-2">Giỏ hàng trống</h3>
@@ -319,7 +319,7 @@ export const CartModal: React.FC<CartModalProps> = ({
               </p>
               <Button 
                 variant="outline" 
-                className="mt-8 rounded-2xl border-[#fed7aa]/70 h-12 px-8 font-black uppercase text-xs tracking-widest text-stone-600 active:scale-95" 
+                className="mt-8 rounded-2xl border-outline-variant/70 h-12 px-8 font-black uppercase text-xs tracking-widest text-stone-600 active:scale-95" 
                 onClick={onClose}
               >
                 Tiếp tục chọn món
@@ -332,22 +332,22 @@ export const CartModal: React.FC<CartModalProps> = ({
             <div className="space-y-4">
               <div className="flex items-center justify-between px-1">
                 <div className="flex items-center gap-2">
-                    <div className="w-1 h-4 bg-[#ea580c] rounded-full" />
+                    <div className="w-1 h-4 bg-primary rounded-full" />
                     <h3 className="text-xs font-black text-stone-400 uppercase tracking-widest">Danh sách đã đặt</h3>
                 </div>
               </div>
               
               <div className="space-y-3">
                 {existingOrders.map((order) => (
-                  <div key={order.id} className="bg-[#ffedd5]/45 backdrop-blur-sm border border-[#fed7aa]/60 rounded-[1.5rem] p-4 relative">
+                  <div key={order.id} className="bg-surface-container-low/45 backdrop-blur-sm border border-outline-variant/60 rounded-[1.5rem] p-4 relative">
                     <div className="flex items-center justify-between mb-3 px-1">
-                        <span className="font-bold text-[#9a3412]/70 uppercase tracking-widest text-[9px]">Mã đơn: #{String(order.id).slice(-4)}</span>
+                        <span className="font-bold text-primary/70 uppercase tracking-widest text-[9px]">Mã đơn: #{String(order.id).slice(-4)}</span>
                         <Badge className={`${
                             String(order.status).toLowerCase() === 'completed'
-                              ? 'bg-[#ea580c] text-white'
+                              ? 'bg-primary text-white'
                               : String(order.status).toLowerCase() === 'preparing'
-                                ? 'bg-[#ffedd5] text-[#9a3412]'
-                                : 'bg-[#ffedd5] text-[#9a3412]'
+                                ? 'bg-surface-container-low text-primary'
+                                : 'bg-surface-container-low text-primary'
                         } border-0 font-black text-[9px] uppercase tracking-tighter rounded-lg`}>
                             {String(order.status).toLowerCase() === 'completed' ? 'Đã phục vụ' : 
                              String(order.status).toLowerCase() === 'preparing' ? 'Đang chế biến' : 
@@ -356,9 +356,9 @@ export const CartModal: React.FC<CartModalProps> = ({
                     </div>
                     <div className="space-y-3">
                       {(order.items || []).map((item: any, idx: number) => (
-                        <div key={`${order.id}-${idx}`} className="flex justify-between items-center bg-surface p-2.5 rounded-xl border border-[#fed7aa]/60 shadow-sm">
+                        <div key={`${order.id}-${idx}`} className="flex justify-between items-center bg-surface p-2.5 rounded-xl border border-outline-variant/60 shadow-sm">
                           <div className="flex items-center gap-3">
-                             <span className="w-6 h-6 rounded-lg bg-[#ffedd5] text-[#9a3412] flex items-center justify-center font-black text-[10px]">
+                             <span className="w-6 h-6 rounded-lg bg-surface-container-low text-primary flex items-center justify-center font-black text-[10px]">
                                 {item.quantity}
                              </span>
                              <div className="flex flex-col">
@@ -375,11 +375,11 @@ export const CartModal: React.FC<CartModalProps> = ({
                       ))}
                     </div>
                     
-                    <div className="flex items-center justify-between mt-4 pt-3 border-t border-[#fed7aa]/60">
-                       <span className="font-bold text-[#9a3412]/70 uppercase tracking-wider text-[10px]">
+                    <div className="flex items-center justify-between mt-4 pt-3 border-t border-outline-variant/60">
+                       <span className="font-bold text-primary/70 uppercase tracking-wider text-[10px]">
                          Thời gian: {formatTimeShort(order.createdAt ?? order.created_at)}
                        </span>
-                       <span className="text-[#9a3412] font-black">{Intl.NumberFormat('vi-VN').format(Number(order.totalPrice) || 0)}đ</span>
+                       <span className="text-primary font-black">{Intl.NumberFormat('vi-VN').format(Number(order.totalPrice) || 0)}đ</span>
                     </div>
                   </div>
                 ))}
@@ -391,13 +391,13 @@ export const CartModal: React.FC<CartModalProps> = ({
           {items.length > 0 && (
             <div className="space-y-4">
               <div className="flex items-center gap-2 px-1">
-                <div className="w-1 h-4 bg-[#ea580c] rounded-full" />
+                <div className="w-1 h-4 bg-primary rounded-full" />
                 <h3 className="text-xs font-black text-stone-400 uppercase tracking-widest">Ghi chú thêm</h3>
               </div>
               
-              <div className="bg-surface rounded-[2rem] p-5 shadow-sm border border-[#fed7aa]/70">
+              <div className="bg-surface rounded-[2rem] p-5 shadow-sm border border-outline-variant/70">
                 <textarea 
-                  className="w-full bg-surface-container-low border-[#fed7aa]/60 rounded-2xl p-4 text-stone-700 placeholder:text-stone-300 focus:bg-surface resize-none transition-all text-sm h-24 border outline-none"
+                  className="w-full bg-surface-container-low border-outline-variant/60 rounded-2xl p-4 text-stone-700 placeholder:text-stone-300 focus:bg-surface resize-none transition-all text-sm h-24 border outline-none"
                   placeholder="VD: Không đá, ít ngọt, nhiều trân châu..." 
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
@@ -430,7 +430,7 @@ export const CartModal: React.FC<CartModalProps> = ({
                         </div>
                     )}
                     {existingOrders.length > 0 && (
-                        <div className="flex justify-between text-[#ea580c] text-[11px] font-bold">
+                        <div className="flex justify-between text-primary text-[11px] font-bold">
                             <span>Đã phục vụ ({existingOrders.reduce((s, o) => s + (o.items?.length || 0), 0)} món)</span>
                             <span>{Intl.NumberFormat('vi-VN').format(servedTotal)}đ</span>
                         </div>
@@ -480,7 +480,7 @@ export const CartModal: React.FC<CartModalProps> = ({
                     ) : (
                         <div className="flex items-center justify-between w-full px-4">
                             <div className="flex items-center gap-3">
-                                <div className="w-8 h-8 rounded-xl bg-[#fff7ed]/35 flex items-center justify-center text-white">
+                                <div className="w-8 h-8 rounded-xl bg-surface/35 flex items-center justify-center text-white">
                                     <Send size={18} />
                                 </div>
                                 <span className="text-left font-black tracking-tighter">XÁC NHẬN ĐẶT<br/><span className="text-[10px] opacity-60 uppercase tracking-widest leading-none">Gửi {items.reduce((s, i) => s + i.quantity, 0)} món mới</span></span>
@@ -501,11 +501,11 @@ export const CartModal: React.FC<CartModalProps> = ({
                         <div className="flex items-center justify-between w-full px-5">
                             <div className="flex flex-col items-start leading-tight">
                                 <span className="text-[10px] opacity-40 font-bold uppercase tracking-[0.2em] mb-0.5">Tổng hóa đơn của bạn</span>
-                                <span className="text-lg font-black text-[#ea580c]">{Intl.NumberFormat('vi-VN').format(servedTotal)}đ</span>
+                                <span className="text-lg font-black text-primary">{Intl.NumberFormat('vi-VN').format(servedTotal)}đ</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <span className="text-[10px] font-black tracking-widest opacity-60">CHỌN THÊM MÓN</span>
-                                <div className="w-8 h-8 rounded-xl bg-[#fff7ed]/25 flex items-center justify-center">
+                                <div className="w-8 h-8 rounded-xl bg-surface/25 flex items-center justify-center">
                                     <ShoppingBasket size={18} />
                                 </div>
                             </div>

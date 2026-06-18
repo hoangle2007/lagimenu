@@ -39,7 +39,7 @@ export const WifiWelcomeModal: React.FC<Props> = ({ wifiSsid, wifiPassword }) =>
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && dismiss()}>
-      <DialogContent className="sm:max-w-[400px] p-0 gap-0 overflow-hidden border-0 shadow-2xl shadow-slate-900/25 rounded-[1.75rem] bg-[#fff7ed]">
+      <DialogContent className="sm:max-w-[400px] p-0 gap-0 overflow-hidden border-0 shadow-2xl shadow-slate-900/25 rounded-[1.75rem] bg-surface">
         <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 px-6 pt-6 pb-16 text-white">
           <button
             type="button"
@@ -62,14 +62,14 @@ export const WifiWelcomeModal: React.FC<Props> = ({ wifiSsid, wifiPassword }) =>
           </DialogHeader>
         </div>
 
-        <div className="-mt-10 mx-4 mb-4 rounded-2xl bg-[#fff7ed] p-1.5 shadow-lg shadow-slate-900/10 ring-1 ring-[#fed7aa]/70">
-          <div className="flex rounded-xl bg-[#ffedd5]/55 p-1">
+        <div className="-mt-10 mx-4 mb-4 rounded-2xl bg-surface p-1.5 shadow-lg shadow-slate-900/10 ring-1 ring-outline-variant/70">
+          <div className="flex rounded-xl bg-surface-container-low/55 p-1">
             <button
               type="button"
               onClick={() => setTab('qr')}
               className={`flex flex-1 items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-bold transition-all ${
                 tab === 'qr'
-                  ? 'bg-[#fff7ed] text-slate-900 shadow-sm ring-1 ring-[#fed7aa]/70'
+                  ? 'bg-surface text-slate-900 shadow-sm ring-1 ring-outline-variant/70'
                   : 'text-slate-500 hover:text-slate-700'
               }`}
             >
@@ -81,7 +81,7 @@ export const WifiWelcomeModal: React.FC<Props> = ({ wifiSsid, wifiPassword }) =>
               onClick={() => setTab('manual')}
               className={`flex flex-1 items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-bold transition-all ${
                 tab === 'manual'
-                  ? 'bg-[#fff7ed] text-slate-900 shadow-sm ring-1 ring-[#fed7aa]/70'
+                  ? 'bg-surface text-slate-900 shadow-sm ring-1 ring-outline-variant/70'
                   : 'text-slate-500 hover:text-slate-700'
               }`}
             >
@@ -94,8 +94,8 @@ export const WifiWelcomeModal: React.FC<Props> = ({ wifiSsid, wifiPassword }) =>
         <div className="px-6 pb-6 pt-0">
           {tab === 'qr' ? (
             <div className="flex flex-col items-center gap-4">
-              <div className="rounded-3xl bg-gradient-to-b from-[#fff7ed] to-[#ffedd5] p-5 ring-1 ring-[#fed7aa]/70 shadow-inner">
-                <div className="rounded-2xl bg-[#fff7ed] p-3 shadow-md ring-1 ring-[#fed7aa]/60">
+              <div className="rounded-3xl bg-gradient-to-b from-surface to-surface-container-low p-5 ring-1 ring-outline-variant/70 shadow-inner">
+                <div className="rounded-2xl bg-surface p-3 shadow-md ring-1 ring-outline-variant/60">
                   <img src={qrSrc} alt="Mã QR WiFi" width={240} height={240} className="rounded-xl" />
                 </div>
               </div>
@@ -106,7 +106,7 @@ export const WifiWelcomeModal: React.FC<Props> = ({ wifiSsid, wifiPassword }) =>
             </div>
           ) : (
             <div className="space-y-4">
-              <div className="rounded-2xl border border-[#fed7aa]/60 bg-[#ffedd5]/40 p-4">
+              <div className="rounded-2xl border border-outline-variant/60 bg-surface-container-low/40 p-4">
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Tên mạng (SSID)</p>
                 <div className="flex gap-2 items-stretch">
                   <code className="flex-1 text-sm font-mono font-semibold text-slate-800 break-all self-center py-1">
@@ -116,7 +116,7 @@ export const WifiWelcomeModal: React.FC<Props> = ({ wifiSsid, wifiPassword }) =>
                     type="button"
                     size="sm"
                     variant="outline"
-                    className="shrink-0 rounded-xl border-[#fed7aa]/70"
+                    className="shrink-0 rounded-xl border-outline-variant/70"
                     onClick={() => copy(ssid, 'ssid')}
                   >
                     <Copy size={14} className="mr-1" />
@@ -124,7 +124,7 @@ export const WifiWelcomeModal: React.FC<Props> = ({ wifiSsid, wifiPassword }) =>
                   </Button>
                 </div>
               </div>
-              <div className="rounded-2xl border border-[#fed7aa]/60 bg-[#ffedd5]/40 p-4">
+              <div className="rounded-2xl border border-outline-variant/60 bg-surface-container-low/40 p-4">
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Mật khẩu</p>
                 <div className="flex gap-2 items-stretch">
                   <code className="flex-1 text-sm font-mono font-semibold text-slate-800 break-all self-center py-1">
@@ -135,7 +135,7 @@ export const WifiWelcomeModal: React.FC<Props> = ({ wifiSsid, wifiPassword }) =>
                       type="button"
                       size="sm"
                       variant="outline"
-                      className="shrink-0 rounded-xl border-[#fed7aa]/70"
+                      className="shrink-0 rounded-xl border-outline-variant/70"
                       onClick={() => copy(pass, 'pass')}
                     >
                       <Copy size={14} className="mr-1" />

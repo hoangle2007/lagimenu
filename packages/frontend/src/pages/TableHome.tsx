@@ -808,25 +808,25 @@ export const TableHome: React.FC = () => {
                   <div className="relative flex h-9 w-9 items-center justify-center">
                     <Gift size={24} className="text-white" strokeWidth={2.25} aria-hidden />
                     <span className="absolute -bottom-1 -right-1 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-amber-400">
-                      <Coins size={11} className="text-orange-950 font-black" aria-hidden />
+                      <Coins size={11} className="text-amber-950 font-black" aria-hidden />
                     </span>
                   </div>
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-wide bg-amber-400 text-orange-950 ring-1 ring-amber-300 animate-pulse">
+                    <span className="px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-wide bg-amber-400 text-amber-950 ring-1 ring-amber-300 animate-pulse">
                       Được tích điểm
                     </span>
                   </div>
                   <h3 className="text-sm font-black text-white mt-1 leading-tight">Thanh toán tích điểm</h3>
-                  <p className="text-[11px] font-bold text-orange-100 mt-1.5 leading-relaxed">
+                  <p className="text-[11px] font-bold text-white/90 mt-1.5 leading-relaxed">
                     {loyaltyProgramBrief?.earnRuleLabel
                       ? loyaltyProgramBrief.earnRuleLabel
                       : 'Gọi thanh toán tại bàn hoặc quét QR tự động để được cộng điểm thưởng.'}
                   </p>
                   
                   {loyaltyProgramLoading ? (
-                    <p className="text-[9px] font-medium text-orange-200 mt-1.5 italic">Đang tải thông tin...</p>
+                    <p className="text-[9px] font-medium text-white/75 mt-1.5 italic">Đang tải thông tin...</p>
                   ) : loyaltyProgramBrief?.hasActiveRewards ? (
                     <p className="text-[9px] font-bold text-amber-300 mt-1.5 leading-snug">
                       Đang có <span className="underline">{loyaltyProgramBrief.rewardCount} phần quà</span> sẵn sàng đổi!
@@ -844,7 +844,7 @@ export const TableHome: React.FC = () => {
                 >
                   <Store size={18} className="text-amber-300" aria-hidden />
                   <span className="text-[10px] font-black uppercase tracking-tight leading-tight">Tại bàn</span>
-                  <span className="text-[8px] font-bold text-orange-100/80 leading-tight">Thu ngân ra bàn</span>
+                  <span className="text-[8px] font-bold text-white/70 leading-tight">Thu ngân ra bàn</span>
                 </button>
                 <button
                   type="button"
@@ -854,7 +854,7 @@ export const TableHome: React.FC = () => {
                 >
                   <QrCode size={18} className="text-amber-300" aria-hidden />
                   <span className="text-[10px] font-black uppercase tracking-tight leading-tight">QR ngân hàng</span>
-                  <span className="text-[8px] font-bold text-orange-100/80 leading-tight">Có tích điểm</span>
+                  <span className="text-[8px] font-bold text-white/70 leading-tight">Có tích điểm</span>
                 </button>
               </div>
 
@@ -862,7 +862,7 @@ export const TableHome: React.FC = () => {
                 type="button"
                 onClick={openLoyaltyModal}
                 disabled={!!sessionError || loyaltyCooldownLeft > 0}
-                className="w-full h-11 rounded-2xl bg-amber-400 hover:bg-amber-300 text-orange-950 text-xs font-black uppercase tracking-widest active:scale-[0.99] transition-all disabled:opacity-40 disabled:pointer-events-none shadow-md flex items-center justify-center gap-1.5 relative z-10 border border-amber-300"
+                className="w-full h-11 rounded-2xl bg-amber-400 hover:bg-amber-300 text-amber-950 text-xs font-black uppercase tracking-widest active:scale-[0.99] transition-all disabled:opacity-40 disabled:pointer-events-none shadow-md flex items-center justify-center gap-1.5 relative z-10 border border-amber-300"
               >
                 <Gift size={15} className="shrink-0" aria-hidden />
                 {loyaltyCooldownLeft > 0 ? `Chờ ${loyaltyCooldownLeft}s` : 'Tra cứu & đổi quà'}
@@ -940,7 +940,7 @@ export const TableHome: React.FC = () => {
           <section className="mt-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
              <div className="bg-surface rounded-[2rem] p-6 shadow-premium-sm border border-stone-100/50 flex flex-col gap-5">
                 <div className="flex items-center gap-2">
-                   <div className="w-1.5 h-1.5 bg-orange-300 rounded-full animate-pulse" />
+                   <div className="w-1.5 h-1.5 bg-primary/50 rounded-full animate-pulse" />
                    <h3 className="text-[10px] font-black text-stone-400 uppercase tracking-[0.2em]">Thông tin cửa hàng</h3>
                 </div>
                 

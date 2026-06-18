@@ -148,7 +148,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose, 
         {/* Scrollable Area */}
         <div className="flex-1 overflow-y-auto no-scrollbar bg-surface">
           {/* Hero Image Section - Tighter on mobile */}
-          <section className="relative h-[28vh] sm:h-[40vh] w-full overflow-hidden bg-[#ffedd5]/60 flex items-center justify-center">
+          <section className="relative h-[28vh] sm:h-[40vh] w-full overflow-hidden bg-surface-container-low/60 flex items-center justify-center">
             {product.imageUrl ? (
               <img 
                 src={product.imageUrl} 
@@ -243,7 +243,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose, 
                         className={`px-5 py-2.5 rounded-full text-[11px] font-bold transition-all border ${
                           selectedSugar === level 
                           ? 'bg-primary text-white border-primary shadow-sm' 
-                            : 'bg-surface-container-low text-stone-600 border-[#fed7aa]/60'
+                            : 'bg-surface-container-low text-stone-600 border-outline-variant/60'
                         }`}
                       >
                         {level}
@@ -257,7 +257,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose, 
                   <section>
                     <div className="flex items-center justify-between mb-3 px-1">
                       <h3 className="text-sm font-black text-on-surface uppercase tracking-wide">Toppings</h3>
-                      <span className="text-[10px] font-bold text-stone-400 px-2 py-0.5 bg-[#ffedd5]/55 rounded-full">Thêm</span>
+                      <span className="text-[10px] font-bold text-stone-400 px-2 py-0.5 bg-surface-container-low/55 rounded-full">Thêm</span>
                     </div>
                     <div className="space-y-2">
                       {toppings.map((topping: any) => {
@@ -266,12 +266,12 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose, 
                           <label 
                             key={topping.name}
                             className={`flex items-center justify-between p-4 rounded-xl border transition-all cursor-pointer ${
-                              isActive ? 'border-primary bg-primary/5' : 'border-[#fed7aa]/60 bg-surface'
+                              isActive ? 'border-primary bg-primary/5' : 'border-outline-variant/60 bg-surface'
                             }`}
                           >
                             <div className="flex items-center gap-3">
                               <div className={`w-5 h-5 rounded flex items-center justify-center transition-all border-2 ${
-                                isActive ? 'bg-primary border-primary' : 'bg-surface border-[#fed7aa]/80'
+                                isActive ? 'bg-primary border-primary' : 'bg-surface border-outline-variant/80'
                               }`}>
                                 {isActive && <Check size={12} className="text-white" strokeWidth={4} />}
                               </div>
@@ -296,7 +296,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose, 
         </div>
 
         {/* Footer actions */}
-        <div className="p-5 border-t border-[#fed7aa]/60 bg-surface/95 backdrop-blur-md">
+        <div className="p-5 border-t border-outline-variant/60 bg-surface/95 backdrop-blur-md">
           {!sessionId && (
             <div className="mb-4 p-3 bg-red-50 border border-red-100 rounded-xl flex items-center gap-2 animate-in slide-in-from-bottom-2">
               <X size={14} className="text-red-500" />
@@ -305,17 +305,17 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose, 
           )}
           <div className="flex items-center gap-4">
             {/* Quantity Selector */}
-            <div className="flex items-center bg-surface-container-low rounded-full p-1 border border-[#fed7aa]/60">
+            <div className="flex items-center bg-surface-container-low rounded-full p-1 border-outline-variant/60">
               <button 
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-surface text-on-surface active:scale-90 transition-transform shadow-sm border border-[#fed7aa]/60"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-surface text-on-surface active:scale-90 transition-transform shadow-sm border border-outline-variant/60"
               >
                 <Minus size={16} />
               </button>
               <span className="w-8 text-center font-bold text-base">{quantity}</span>
               <button 
                 onClick={() => setQuantity(quantity + 1)}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-surface text-primary active:scale-90 transition-transform shadow-sm border border-[#fed7aa]/60"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-surface text-primary active:scale-90 transition-transform shadow-sm border border-outline-variant/60"
               >
                 <Plus size={16} />
               </button>
